@@ -6,7 +6,7 @@
   <link href="https://blog.nothingto.me/atom.xml" rel="self"/>
   
   <link href="https://blog.nothingto.me/"/>
-  <updated>2021-03-24T14:14:51.249Z</updated>
+  <updated>2021-04-08T18:30:12.220Z</updated>
   <id>https://blog.nothingto.me/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>纸上谈TCP</title>
+    <link href="https://blog.nothingto.me/tcp-without-practice"/>
+    <id>https://blog.nothingto.me/tcp-without-practice</id>
+    <published>2021-04-01T02:21:04.000Z</published>
+    <updated>2021-04-08T18:30:12.220Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;TCP（&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE&quot;&gt;传输控制协议&lt;/a&gt;，&lt;a href=&quot;https://en.wikipedia.org/wiki/Transmission_Control_Protocol&quot;&gt;Transmission Control Protocol&lt;/a&gt;）可以说是 TCP/IP 协议族乃至所有网络通信协议中最重要的一个了；「TCP/IP 协议族」直接写了 TCP 的名字，还排在 IP 的前面&lt;del&gt;同为传输层的 UDP 看到都羡慕死了&lt;/del&gt;。这种重要性当然是有根据的，传输层的 TCP 起到了相当大的作用；这与 TCP 的设计是分不开的。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="note" scheme="https://blog.nothingto.me/tags/note/"/>
+    
+    <category term="computer network" scheme="https://blog.nothingto.me/tags/computer-network/"/>
+    
+    <category term="protocols" scheme="https://blog.nothingto.me/tags/protocols/"/>
+    
+  </entry>
   
   <entry>
     <title>R. P. Wolff 关于弗洛伊德的讲课</title>
