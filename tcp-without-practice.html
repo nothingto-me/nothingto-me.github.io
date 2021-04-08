@@ -73,7 +73,7 @@
 <sup>5</sup>. 紧急指针在目前并不常用，它是早期被设计用于在连接中紧急交付数据用的：若某包设置了 URG，则紧急指针指向的那个字节的数据应优先被交付给应用层。然而紧急数据并没有被开辟专门的通道，而是和常规数据一起传送，所以只能起到警告作用。目前建立一条新连接来交付重要数据的成本并不高，所以新程序并不使用紧急指针。<a href="#reffn_5" title="Jump back to footnote [5] in the text."> &#8617;</a>
 </blockquote>
 <blockquote id="fn_6">
-<sup>6</sup>. 这个标志位用于立即断开连接。<a href="#reffn_6" title="Jump back to footnote [6] in the text."> &#8617;</a>
+<sup>6</sup>. 这个标志位用于立即断开连接。有趣的是，它也可以<a target="_blank" rel="noopener" href="https://robertheaton.com/2020/04/27/how-does-a-tcp-reset-attack-work/">用于攻击</a>。<a href="#reffn_6" title="Jump back to footnote [6] in the text."> &#8617;</a>
 </blockquote>
 <blockquote id="fn_7">
 <sup>7</sup>. 还有一些设计并没有体现在首部中，例如重传的机制、流量控制的细节、双方的状态机等等，在这里不表。<a href="#reffn_7" title="Jump back to footnote [7] in the text."> &#8617;</a>
