@@ -218,7 +218,7 @@ Docco style used in http://jashkenas.github.com/docco/ converted by Simon Madine
     border: none;
 }
 
-hljs-in th,td {
+.hljs-in-line {
     border: none !important;
 }
 

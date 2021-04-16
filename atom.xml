@@ -6,7 +6,7 @@
   <link href="https://blog.nothingto.me/atom.xml" rel="self"/>
   
   <link href="https://blog.nothingto.me/"/>
-  <updated>2021-04-09T02:04:33.729Z</updated>
+  <updated>2021-04-16T04:18:41.237Z</updated>
   <id>https://blog.nothingto.me/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>谈无损连接分解判别算法</title>
+    <link href="https://blog.nothingto.me/talking-about-chase-algorithm"/>
+    <id>https://blog.nothingto.me/talking-about-chase-algorithm</id>
+    <published>2021-04-15T10:05:27.000Z</published>
+    <updated>2021-04-16T04:18:41.237Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Chase_%28algorithm%29&quot;&gt;这个算法&lt;/a&gt;本身并不难，就从那个大家都喜欢的例子来开始细说。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="note" scheme="https://blog.nothingto.me/tags/note/"/>
+    
+    <category term="problem solving" scheme="https://blog.nothingto.me/tags/problem-solving/"/>
+    
+    <category term="relational algebra" scheme="https://blog.nothingto.me/tags/relational-algebra/"/>
+    
+  </entry>
+  
+  <entry>
     <title>纸上谈 TCP</title>
     <link href="https://blog.nothingto.me/tcp-without-practice"/>
     <id>https://blog.nothingto.me/tcp-without-practice</id>
     <published>2021-04-01T02:21:04.000Z</published>
-    <updated>2021-04-09T02:04:33.729Z</updated>
+    <updated>2021-04-09T04:37:02.976Z</updated>
     
     
       
