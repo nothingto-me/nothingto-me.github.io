@@ -214,11 +214,7 @@ Docco style used in http://jashkenas.github.com/docco/ converted by Simon Madine
 
 }
 
-.hljs-in {
-    border: none;
-}
-
-.hljs-in-line {
+.hljs-ln-line {
     border: none !important;
 }
 
@@ -247,6 +243,10 @@ Docco style used in http://jashkenas.github.com/docco/ converted by Simon Madine
 /* for block of code */
 .hljs-ln-code {
     padding-left: 10px !important;
+}
+
+.MJXc-display {
+    overflow: auto !important;
 }
 
 

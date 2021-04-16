@@ -36,9 +36,9 @@
     
     
     
-    <category term="note" scheme="https://blog.nothingto.me/tags/note/"/>
-    
     <category term="problem solving" scheme="https://blog.nothingto.me/tags/problem-solving/"/>
+    
+    <category term="note" scheme="https://blog.nothingto.me/tags/note/"/>
     
     <category term="relational algebra" scheme="https://blog.nothingto.me/tags/relational-algebra/"/>
     
