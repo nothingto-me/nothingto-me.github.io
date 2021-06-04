@@ -6,7 +6,7 @@
   <link href="https://blog.nothingto.me/atom.xml" rel="self"/>
   
   <link href="https://blog.nothingto.me/"/>
-  <updated>2021-05-20T12:55:14.577Z</updated>
+  <updated>2021-06-04T07:33:30.921Z</updated>
   <id>https://blog.nothingto.me/</id>
   
   <author>
@@ -15,32 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Qubes OS 安装与代理部署</title>
-    <link href="https://blog.nothingto.me/qubes-os-with-proxy-install"/>
-    <id>https://blog.nothingto.me/qubes-os-with-proxy-install</id>
-    <published>2021-04-28T10:16:56.000Z</published>
-    <updated>2021-05-20T12:55:14.577Z</updated>
-    
-    
-      
-      
-        
-        
-        
-    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Qubes_OS&quot;&gt;Qubes OS&lt;/a&gt; 是一个通过隔离（isolation）加强安全的&lt;del&gt;虚拟机集群&lt;/del&gt;桌面操作系统。本文将通过复读 &lt;a href=&quot;https://www.qubes-os.org/doc/&quot;&gt;Qubes OS 官方文档&lt;/a&gt;的方式教你安装这个操作系统并为其部署代理（作为 Tor 的前置代理）。当然，本文不能解决你在安装过程中遇到的大部分问题，如果你遇到了我也没遇到过的问题请参考官网的&lt;a href=&quot;https://www.qubes-os.org/doc/#troubleshooting&quot;&gt;故障排除指南&lt;/a&gt;或在相关社区中进行提问。&lt;/p&gt;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="tutorial" scheme="https://blog.nothingto.me/tags/tutorial/"/>
-    
-    <category term="linux" scheme="https://blog.nothingto.me/tags/linux/"/>
-    
-  </entry>
   
   <entry>
     <title>谈无损连接分解判别算法</title>

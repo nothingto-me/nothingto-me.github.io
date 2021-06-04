@@ -9,16 +9,16 @@
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/qubes-os-with-proxy-install</loc>
+    <loc>https://blog.nothingto.me/tcp-without-practice</loc>
     
-    <lastmod>2021-05-20</lastmod>
+    <lastmod>2021-04-27</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tcp-without-practice</loc>
+    <loc>https://blog.nothingto.me/404</loc>
     
-    <lastmod>2021-04-27</lastmod>
+    <lastmod>2021-04-17</lastmod>
     
   </url>
   
@@ -54,13 +54,6 @@
     <loc>https://blog.nothingto.me/hello-world</loc>
     
     <lastmod>2021-03-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/404</loc>
-    
-    <lastmod>2021-03-03</lastmod>
     
   </url>
   
@@ -159,20 +152,6 @@
   
   <url>
     <loc>https://blog.nothingto.me/tags/relational-algebra/</loc>
-    <lastmod>2021-06-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/tags/tutorial/</loc>
-    <lastmod>2021-06-04</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/tags/linux/</loc>
     <lastmod>2021-06-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
