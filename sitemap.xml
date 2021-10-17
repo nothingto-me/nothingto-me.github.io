@@ -109,20 +109,6 @@
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/Probability/</loc>
-    <lastmod>2021-10-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/tags/Python/</loc>
-    <lastmod>2021-10-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://blog.nothingto.me/tags/Tutorial/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
@@ -144,14 +130,14 @@
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/ComputerNetwork/</loc>
+    <loc>https://blog.nothingto.me/tags/Philosophy/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/Protocols/</loc>
+    <loc>https://blog.nothingto.me/tags/Psychology/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -165,14 +151,28 @@
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/Philosophy/</loc>
+    <loc>https://blog.nothingto.me/tags/Probability/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/Psychology/</loc>
+    <loc>https://blog.nothingto.me/tags/Python/</loc>
+    <lastmod>2021-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/tags/ComputerNetwork/</loc>
+    <lastmod>2021-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/tags/Protocols/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
