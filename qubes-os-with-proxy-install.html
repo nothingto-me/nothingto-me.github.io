@@ -13,7 +13,7 @@
 <h3 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h3><p>到<a target="_blank" rel="noopener" href="https://www.qubes-os.org/downloads/">这里</a>下载最新版的镜像。将镜像刻录到 U 盘上作为安装盘后，从安装盘启动安装程序。由于安全原因，Qubes OS 不支持作为双系统的其中一个来安装。</p>
 <p>在安装中遇到的问题可以参考<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/installation-troubleshooting/">安装问题排查</a>。如果遇到了安装界面卡住的问题，不要忘记禁用 nouveau 驱动（Fuck you NVIDIA）。</p>
 <blockquote>
-<p>注意：如果安装介质是通过 USB 连接的设备（通常用于测试），那么在安装后创建默认 qube 时，不要勾选「创建 sys-usb」，否则系统无法启动。原因是，如果存在 sys-usb 这个 qube，那么 USB 就会由这个 qube 来管理而与 Dom0 隔离；但 Dom0 和其他 qube 的启动依赖于 USB 中的内容，所以在创建完 sys-usb 之后，系统就完了。</p>
+<p>注意：如果安装介质是通过 USB 连接的设备（通常用于测试），那么在安装后创建默认 qube 时，不要勾选「创建 sys-usb」，否则系统无法启动。原因是，如果存在 sys-usb 这个 qube，那么 USB 就会由这个 qube 来管理而与 dom0 隔离；但 dom0 和其他 qube 的启动依赖于 USB 中的内容，所以在创建完 sys-usb 之后，系统就完了。</p>
 </blockquote>
 <h3 id="代理环境"><a href="#代理环境" class="headerlink" title="代理环境"></a>代理环境</h3><p>系统启动后，创建的默认 qube 应该有 sys-net、sys-firewall 这些系统 VM，还有 personal、work 这些 AppVM 等。如果你在安装的过程中选择了安装 whonix，那么还会有 sys-whonix 和 anon-whonix．当然，由于显而易见的原因，whonix qube 和 AppVM 想要访问互联网还需要部署代理。</p>
 <p>这篇文章中的方法将会创建一个代理专用的 qube：sys-proxy，在此 qube 上部署代理客户端，并以共享给局域网的方式提供给 whonix 等其他 qube．目标的 Qubes 网络系统是这样的：</p>
