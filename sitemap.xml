@@ -2,7 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.nothingto.me/qubes-os-with-proxy-install</loc>
+    <loc>https://blog.nothingto.me/hello-world</loc>
+    
+    <lastmod>2021-10-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/lisp-variable-procedure-definition</loc>
+    
+    <lastmod>2021-10-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/robert-paul-wolff-lecture-on-freud</loc>
+    
+    <lastmod>2021-10-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/a-classical-probability-problem-solving-with-brute-force</loc>
+    
+    <lastmod>2021-10-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/tcp-without-practice</loc>
     
     <lastmod>2021-10-17</lastmod>
     
@@ -11,14 +39,14 @@
   <url>
     <loc>https://blog.nothingto.me/talking-about-chase-algorithm</loc>
     
-    <lastmod>2021-06-04</lastmod>
+    <lastmod>2021-10-17</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tcp-without-practice</loc>
+    <loc>https://blog.nothingto.me/qubes-os-with-proxy-install</loc>
     
-    <lastmod>2021-04-27</lastmod>
+    <lastmod>2021-10-17</lastmod>
     
   </url>
   
@@ -30,35 +58,7 @@
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/a-classical-probability-problem-solving-with-brute-force</loc>
-    
-    <lastmod>2021-04-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/lisp-variable-procedure-definition</loc>
-    
-    <lastmod>2021-04-16</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/robert-paul-wolff-lecture-on-freud</loc>
-    
-    <lastmod>2021-03-24</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.nothingto.me/google94626c72c449da1d</loc>
-    
-    <lastmod>2021-03-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/hello-world</loc>
     
     <lastmod>2021-03-06</lastmod>
     
@@ -74,14 +74,14 @@
 
   
   <url>
-    <loc>https://blog.nothingto.me/tags/meta/</loc>
+    <loc>https://blog.nothingto.me/tags/Meta/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/problem-solving/</loc>
+    <loc>https://blog.nothingto.me/tags/ProblemSolving/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -95,63 +95,63 @@
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/math/</loc>
+    <loc>https://blog.nothingto.me/tags/Math/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/number-theory/</loc>
+    <loc>https://blog.nothingto.me/tags/NumberTheory/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/tutorial/</loc>
+    <loc>https://blog.nothingto.me/tags/Tutorial/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/linux/</loc>
+    <loc>https://blog.nothingto.me/tags/Linux/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/cyber-security/</loc>
+    <loc>https://blog.nothingto.me/tags/CyberSecurity/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/philosophy/</loc>
+    <loc>https://blog.nothingto.me/tags/Philosophy/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/psychology/</loc>
+    <loc>https://blog.nothingto.me/tags/Psychology/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/note/</loc>
+    <loc>https://blog.nothingto.me/tags/Note/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/probability/</loc>
+    <loc>https://blog.nothingto.me/tags/Probability/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -165,21 +165,21 @@
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/computer-network/</loc>
+    <loc>https://blog.nothingto.me/tags/ComputerNetwork/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/protocols/</loc>
+    <loc>https://blog.nothingto.me/tags/Protocols/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/tags/relational-algebra/</loc>
+    <loc>https://blog.nothingto.me/tags/RelationalAlgebra/</loc>
     <lastmod>2021-10-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

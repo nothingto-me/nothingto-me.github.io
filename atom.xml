@@ -6,7 +6,7 @@
   <link href="https://blog.nothingto.me/atom.xml" rel="self"/>
   
   <link href="https://blog.nothingto.me/"/>
-  <updated>2021-10-17T15:10:26.050Z</updated>
+  <updated>2021-10-17T15:23:46.670Z</updated>
   <id>https://blog.nothingto.me/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://blog.nothingto.me/qubes-os-with-proxy-install"/>
     <id>https://blog.nothingto.me/qubes-os-with-proxy-install</id>
     <published>2021-10-17T03:17:56.000Z</published>
-    <updated>2021-10-17T15:10:26.050Z</updated>
+    <updated>2021-10-17T15:23:46.670Z</updated>
     
     
       
@@ -36,11 +36,11 @@
     
     
     
-    <category term="tutorial" scheme="https://blog.nothingto.me/tags/tutorial/"/>
+    <category term="Tutorial" scheme="https://blog.nothingto.me/tags/Tutorial/"/>
     
-    <category term="linux" scheme="https://blog.nothingto.me/tags/linux/"/>
+    <category term="Linux" scheme="https://blog.nothingto.me/tags/Linux/"/>
     
-    <category term="cyber security" scheme="https://blog.nothingto.me/tags/cyber-security/"/>
+    <category term="CyberSecurity" scheme="https://blog.nothingto.me/tags/CyberSecurity/"/>
     
   </entry>
   
@@ -49,7 +49,7 @@
     <link href="https://blog.nothingto.me/talking-about-chase-algorithm"/>
     <id>https://blog.nothingto.me/talking-about-chase-algorithm</id>
     <published>2021-04-15T10:05:27.000Z</published>
-    <updated>2021-06-04T07:33:30.921Z</updated>
+    <updated>2021-10-17T15:24:11.350Z</updated>
     
     
       
@@ -64,11 +64,11 @@
     
     
     
-    <category term="problem solving" scheme="https://blog.nothingto.me/tags/problem-solving/"/>
+    <category term="ProblemSolving" scheme="https://blog.nothingto.me/tags/ProblemSolving/"/>
     
-    <category term="note" scheme="https://blog.nothingto.me/tags/note/"/>
+    <category term="Note" scheme="https://blog.nothingto.me/tags/Note/"/>
     
-    <category term="relational algebra" scheme="https://blog.nothingto.me/tags/relational-algebra/"/>
+    <category term="RelationalAlgebra" scheme="https://blog.nothingto.me/tags/RelationalAlgebra/"/>
     
   </entry>
   
@@ -77,7 +77,7 @@
     <link href="https://blog.nothingto.me/tcp-without-practice"/>
     <id>https://blog.nothingto.me/tcp-without-practice</id>
     <published>2021-04-01T02:21:04.000Z</published>
-    <updated>2021-04-27T10:58:04.477Z</updated>
+    <updated>2021-10-17T15:24:28.180Z</updated>
     
     
       
@@ -92,11 +92,11 @@
     
     
     
-    <category term="note" scheme="https://blog.nothingto.me/tags/note/"/>
+    <category term="Note" scheme="https://blog.nothingto.me/tags/Note/"/>
     
-    <category term="computer network" scheme="https://blog.nothingto.me/tags/computer-network/"/>
+    <category term="ComputerNetwork" scheme="https://blog.nothingto.me/tags/ComputerNetwork/"/>
     
-    <category term="protocols" scheme="https://blog.nothingto.me/tags/protocols/"/>
+    <category term="Protocols" scheme="https://blog.nothingto.me/tags/Protocols/"/>
     
   </entry>
   
@@ -105,7 +105,7 @@
     <link href="https://blog.nothingto.me/robert-paul-wolff-lecture-on-freud"/>
     <id>https://blog.nothingto.me/robert-paul-wolff-lecture-on-freud</id>
     <published>2021-03-17T11:30:38.000Z</published>
-    <updated>2021-03-24T14:14:51.249Z</updated>
+    <updated>2021-10-17T15:25:02.033Z</updated>
     
     
       
@@ -120,11 +120,11 @@
     
     
     
-    <category term="philosophy" scheme="https://blog.nothingto.me/tags/philosophy/"/>
+    <category term="Philosophy" scheme="https://blog.nothingto.me/tags/Philosophy/"/>
     
-    <category term="psychology" scheme="https://blog.nothingto.me/tags/psychology/"/>
+    <category term="Psychology" scheme="https://blog.nothingto.me/tags/Psychology/"/>
     
-    <category term="note" scheme="https://blog.nothingto.me/tags/note/"/>
+    <category term="Note" scheme="https://blog.nothingto.me/tags/Note/"/>
     
   </entry>
   
@@ -133,7 +133,7 @@
     <link href="https://blog.nothingto.me/lisp-variable-procedure-definition"/>
     <id>https://blog.nothingto.me/lisp-variable-procedure-definition</id>
     <published>2021-03-11T14:36:01.000Z</published>
-    <updated>2021-04-16T08:54:11.158Z</updated>
+    <updated>2021-10-17T15:25:22.249Z</updated>
     
     
       
@@ -148,13 +148,13 @@
     
     
     
-    <category term="problem solving" scheme="https://blog.nothingto.me/tags/problem-solving/"/>
+    <category term="ProblemSolving" scheme="https://blog.nothingto.me/tags/ProblemSolving/"/>
     
     <category term="Lisp" scheme="https://blog.nothingto.me/tags/Lisp/"/>
     
-    <category term="math" scheme="https://blog.nothingto.me/tags/math/"/>
+    <category term="Math" scheme="https://blog.nothingto.me/tags/Math/"/>
     
-    <category term="number theory" scheme="https://blog.nothingto.me/tags/number-theory/"/>
+    <category term="NumberTheory" scheme="https://blog.nothingto.me/tags/NumberTheory/"/>
     
   </entry>
   
@@ -163,7 +163,7 @@
     <link href="https://blog.nothingto.me/a-classical-probability-problem-solving-with-brute-force"/>
     <id>https://blog.nothingto.me/a-classical-probability-problem-solving-with-brute-force</id>
     <published>2021-03-04T12:55:39.000Z</published>
-    <updated>2021-04-16T08:54:28.494Z</updated>
+    <updated>2021-10-17T15:24:48.061Z</updated>
     
     
       
@@ -178,11 +178,11 @@
     
     
     
-    <category term="problem solving" scheme="https://blog.nothingto.me/tags/problem-solving/"/>
+    <category term="ProblemSolving" scheme="https://blog.nothingto.me/tags/ProblemSolving/"/>
     
-    <category term="math" scheme="https://blog.nothingto.me/tags/math/"/>
+    <category term="Math" scheme="https://blog.nothingto.me/tags/Math/"/>
     
-    <category term="probability" scheme="https://blog.nothingto.me/tags/probability/"/>
+    <category term="Probability" scheme="https://blog.nothingto.me/tags/Probability/"/>
     
     <category term="Python" scheme="https://blog.nothingto.me/tags/Python/"/>
     
@@ -193,7 +193,7 @@
     <link href="https://blog.nothingto.me/hello-world"/>
     <id>https://blog.nothingto.me/hello-world</id>
     <published>2021-03-03T05:41:34.000Z</published>
-    <updated>2021-03-06T03:16:30.000Z</updated>
+    <updated>2021-10-17T15:25:31.180Z</updated>
     
     
       
@@ -208,7 +208,7 @@
     
     
     
-    <category term="meta" scheme="https://blog.nothingto.me/tags/meta/"/>
+    <category term="Meta" scheme="https://blog.nothingto.me/tags/Meta/"/>
     
   </entry>
   
