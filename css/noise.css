@@ -160,7 +160,7 @@ h4 .header-anchor::after {
   }
 }
 .post-main {
-  margin: 5% auto;
+  margin: 1em auto;
 }
 @media only screen and (max-width: 980px) {
   .post-main {
@@ -589,7 +589,7 @@ details[open] > figure:last-child {
     align-items: center;
   }
   .footer .social {
-    padding: 1em 0.4em;
+    padding: auto;
   }
   .footer .footer-content {
     padding: 0.5em 0.2em;
@@ -707,6 +707,12 @@ details[open] > figure:last-child {
 .post-main.misc {
   display: flex;
   justify-content: space-between;
+  margin: 0 auto 0 auto;
+}
+@media only screen and (max-width: 980px) {
+  .post-main.misc {
+    margin: auto;
+  }
 }
 .prev-nav {
   text-align: left;
