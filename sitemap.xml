@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.nothingto.me/qubes-os-with-proxy-install</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/tcp-without-practice</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.nothingto.me/compsci-tales-a-tale-in-memory</loc>
     
     <lastmod>2021-10-19</lastmod>
@@ -44,7 +58,14 @@
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/qubes-os-with-proxy-install</loc>
+    <loc>https://blog.nothingto.me/robert-paul-wolff-lecture-on-freud</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/lisp-variable-procedure-definition</loc>
     
     <lastmod>2021-10-19</lastmod>
     
@@ -107,27 +128,6 @@
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/lisp-variable-procedure-definition</loc>
-    
-    <lastmod>2021-10-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/robert-paul-wolff-lecture-on-freud</loc>
-    
-    <lastmod>2021-10-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/tcp-without-practice</loc>
-    
-    <lastmod>2021-10-17</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.nothingto.me/talking-about-chase-algorithm</loc>
     
     <lastmod>2021-10-17</lastmod>
@@ -149,6 +149,13 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://blog.nothingto.me/tags/Meta/</loc>
+    <lastmod>2021-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/ProblemSolving/</loc>
@@ -173,13 +180,6 @@
   
   <url>
     <loc>https://blog.nothingto.me/tags/NumberTheory/</loc>
-    <lastmod>2021-10-19</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/tags/Meta/</loc>
     <lastmod>2021-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
