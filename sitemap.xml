@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.nothingto.me/compsci-tales-the-future-of-alchemy</loc>
+    <loc>https://blog.nothingto.me/compsci-tales-a-tale-in-memory</loc>
     
     <lastmod>2021-10-19</lastmod>
     
@@ -10,6 +10,13 @@
   
   <url>
     <loc>https://blog.nothingto.me/compsci-tales-transmission</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/compsci-tales-the-future-of-alchemy</loc>
     
     <lastmod>2021-10-19</lastmod>
     
@@ -31,13 +38,6 @@
   
   <url>
     <loc>https://blog.nothingto.me/compsci-tales-now-you-have-two-problems</loc>
-    
-    <lastmod>2021-10-19</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/compsci-tales-a-tale-in-memory</loc>
     
     <lastmod>2021-10-19</lastmod>
     
