@@ -2,6 +2,48 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.nothingto.me/compsci-tales-the-future-of-alchemy</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/compsci-tales-transmission</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/compsci-tales-the-center-of-umwelt</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/compsci-tales-hierarchy</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/compsci-tales-now-you-have-two-problems</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/compsci-tales-a-tale-in-memory</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.nothingto.me/404</loc>
     
     <lastmod>2021-10-19</lastmod>
@@ -180,6 +222,27 @@
   
   <url>
     <loc>https://blog.nothingto.me/tags/RelationalAlgebra/</loc>
+    <lastmod>2021-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/tags/CompSciTales/</loc>
+    <lastmod>2021-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/tags/Artwork/</loc>
+    <lastmod>2021-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/tags/CNN/</loc>
     <lastmod>2021-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

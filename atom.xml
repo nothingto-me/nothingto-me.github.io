@@ -45,6 +45,166 @@
   </entry>
   
   <entry>
+    <title>炼金术的未来</title>
+    <link href="https://blog.nothingto.me/compsci-tales-the-future-of-alchemy"/>
+    <id>https://blog.nothingto.me/compsci-tales-the-future-of-alchemy</id>
+    <published>2021-10-04T10:03:43.000Z</published>
+    <updated>2021-10-19T06:04:33.180Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个关于&lt;del&gt;深度学习&lt;/del&gt;炼金术的故事。这个故事属于计算机科学小故事系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+    <category term="CNN" scheme="https://blog.nothingto.me/tags/CNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记忆中的故事</title>
+    <link href="https://blog.nothingto.me/compsci-tales-the-center-of-umwelt"/>
+    <id>https://blog.nothingto.me/compsci-tales-the-center-of-umwelt</id>
+    <published>2021-10-04T09:03:43.000Z</published>
+    <updated>2021-10-19T05:59:21.810Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个告诉你不要玩手机了的故事。这个故事属于计算机科学小故事系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>层次结构</title>
+    <link href="https://blog.nothingto.me/compsci-tales-hierarchy"/>
+    <id>https://blog.nothingto.me/compsci-tales-hierarchy</id>
+    <published>2021-10-04T08:03:43.000Z</published>
+    <updated>2021-10-19T05:58:18.683Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个关于虚拟化和等级的老套路故事。这个故事属于计算机科学小故事系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>现在你有两个问题了</title>
+    <link href="https://blog.nothingto.me/compsci-tales-now-you-have-two-problems"/>
+    <id>https://blog.nothingto.me/compsci-tales-now-you-have-two-problems</id>
+    <published>2021-10-04T07:03:43.000Z</published>
+    <updated>2021-10-19T05:57:59.335Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个小故事，两个线程李 A 和萨 T 遇到了沟通的难题，而这一难题来自两者被分开这件事。这个故事属于计算机科学小故事系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记忆中的故事</title>
+    <link href="https://blog.nothingto.me/compsci-tales-a-tale-in-memory"/>
+    <id>https://blog.nothingto.me/compsci-tales-a-tale-in-memory</id>
+    <published>2021-10-04T06:03:43.000Z</published>
+    <updated>2021-10-19T05:57:11.952Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个小故事，关于递归和函数调用是什么的问题。这个故事属于计算机科学小故事系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计算机科学小故事</title>
+    <link href="https://blog.nothingto.me/compsci-tales-transmission"/>
+    <id>https://blog.nothingto.me/compsci-tales-transmission</id>
+    <published>2021-10-04T05:03:43.000Z</published>
+    <updated>2021-10-19T06:04:18.842Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个小故事，关于网络协议栈的拟人化类比，和这个类比到底合不合适的问题。这个故事属于计算机科学小故事系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ComputerNetwork" scheme="https://blog.nothingto.me/tags/ComputerNetwork/"/>
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+  </entry>
+  
+  <entry>
     <title>谈无损连接分解判别算法</title>
     <link href="https://blog.nothingto.me/talking-about-chase-algorithm"/>
     <id>https://blog.nothingto.me/talking-about-chase-algorithm</id>
