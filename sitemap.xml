@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://blog.nothingto.me/compsci-tales-a-tale-in-memory</loc>
+    <loc>https://blog.nothingto.me/compsci-tales-hierarchy</loc>
     
     <lastmod>2021-10-19</lastmod>
     
@@ -10,6 +10,13 @@
   
   <url>
     <loc>https://blog.nothingto.me/compsci-tales-transmission</loc>
+    
+    <lastmod>2021-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/compsci-tales-a-tale-in-memory</loc>
     
     <lastmod>2021-10-19</lastmod>
     
@@ -24,13 +31,6 @@
   
   <url>
     <loc>https://blog.nothingto.me/compsci-tales-the-center-of-umwelt</loc>
-    
-    <lastmod>2021-10-19</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/compsci-tales-hierarchy</loc>
     
     <lastmod>2021-10-19</lastmod>
     
