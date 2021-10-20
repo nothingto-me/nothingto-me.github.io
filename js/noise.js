@@ -49,7 +49,7 @@ function appendPage() {
 }
 
 $(window).scroll(function () {
-   if ($(window).scrollTop() >= $(document).height() - $(window).height() - 16) {
+   if ($(window).scrollTop() >= $(document).height() - $(window).height() - 32) {
      appendPage();
    }
 });
