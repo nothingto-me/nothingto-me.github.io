@@ -10,6 +10,11 @@
         color: white;
     }
     
+    .MathJax_MenuActive {
+        background-color: #A2A4A6;
+        color: #111;
+    }
+    
     #MathJax_Help {
         background-color: #333;
         color: white;
