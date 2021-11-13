@@ -8,7 +8,7 @@
 <li>你喜欢的代理客户端（支持 HTTP 代理或 Socks5 代理，能在 Fedora 或 Debian 上运行）；</li>
 <li>对 Linux 的一点儿经验或知识。（一点儿！）</li>
 </ul>
-<h2 id="Qubes-OS-简介"><a href="#Qubes-OS-简介" class="headerlink" title="Qubes OS 简介"></a>Qubes OS 简介</h2><p>Qubes OS 基于 <a target="_blank" rel="noopener" href="https://wiki.xen.org/wiki/Xen_Project_Software_Overview">Xen Hypervisor</a>，这是一个裸机虚拟化管程（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hypervisor">bare-metal hypervisor</a>），即直接运行在硬件上的虚拟化管程。在这个虚拟层之上运行着各种虚拟机，称为 qubes．Qubes OS 将不同的应用运行在不同的 qube 里。</p>
+<h2 id="Qubes-OS-简介"><a href="#Qubes-OS-简介" class="headerlink" title="Qubes OS 简介"></a>Qubes OS 简介</h2><p>Qubes OS 基于 <a target="_blank" rel="noopener" href="https://wiki.xen.org/wiki/Xen_Project_Software_Overview">Xen Hypervisor</a>，这是一个裸机虚拟化管程（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hypervisor">bare-metal hypervisor</a>），即直接运行在硬件上的虚拟化管程。在这个虚拟层之上运行着各种虚拟机，称为 qubes．Qubes OS 将不同的应用运行在不同的 qube 里，这样不仅可以隔离各个应用使其无法互相干扰或读取系统数据以保护隐私，也能防止恶意软件侵入系统以保持安全。</p>
 <p><img src="https://www.qubes-os.org/attachment/site/qubes-trust-level-architecture.png" alt=""></p>
 <h2 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h2><p>到<a target="_blank" rel="noopener" href="https://www.qubes-os.org/downloads/">这里</a>下载最新版的镜像。将镜像刻录到 U 盘上作为安装盘后，从安装盘启动安装程序。由于安全原因，Qubes OS 不支持作为双系统的其中一个来安装。</p>
 <p>在安装中遇到的问题可以参考<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/installation-troubleshooting/">安装问题排查</a>。如果遇到了安装界面卡住的问题，不要忘记禁用 nouveau 驱动（Fuck you NVIDIA）。</p>
