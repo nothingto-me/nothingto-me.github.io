@@ -6,7 +6,7 @@
   <link href="https://blog.nothingto.me/atom.xml" rel="self"/>
   
   <link href="https://blog.nothingto.me/"/>
-  <updated>2021-11-13T09:11:36.860Z</updated>
+  <updated>2021-12-02T07:03:17.064Z</updated>
   <id>https://blog.nothingto.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>无政府超人类主义问答</title>
+    <link href="https://blog.nothingto.me/anarcho-transhumanist-faq-zh-cn"/>
+    <id>https://blog.nothingto.me/anarcho-transhumanist-faq-zh-cn</id>
+    <published>2021-12-02T06:43:07.000Z</published>
+    <updated>2021-12-02T07:03:17.064Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;翻译自 &lt;a href=&quot;http://blueshifted.net/faq/&quot;&gt;@H+ Frequently Asked Questions&lt;/a&gt;，原作者威廉·吉利斯（William Gillis）。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Activitism" scheme="https://blog.nothingto.me/tags/Activitism/"/>
+    
+    <category term="Translation" scheme="https://blog.nothingto.me/tags/Translation/"/>
+    
+  </entry>
   
   <entry>
     <title>Qubes OS 安装与代理部署</title>
