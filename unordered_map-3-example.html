@@ -123,7 +123,7 @@ int main () &#123;
 <pre><code class="lang-c++">2(2(2)+2+2(0))+2(2+2(0))+2(0)
 </code></pre>
 <h3 id="解答-2"><a href="#解答-2" class="headerlink" title="解答"></a>解答</h3><p>用递归和分治的方法解决此题。让函数在得到 137 时，先得出 2 的幂的和的表示法中的指数，然后再对指数递归调用这个函数。不过如果指数是 1 时，输出的不是 <code>2(2(0))</code> 而是 <code>2</code>，此时就不用递归直接输出就可以了。</p>
-<p>显然，递归会使函数的参数越来越小，于是题目中有许多重复计算的部分。如果能用 <code>unordered_map</code> 把之前计算的表示式存起来，就不用反复计算，于是可以省很多时间。<del>这就是动态规划<sup><a href="#fn_#" id="reffn_#">#</a></sup>。</del></p>
+<p>显然，递归会使函数的参数越来越小，于是题目中有许多重复计算的部分。如果能用 <code>unordered_map</code> 把之前计算的表示式存起来，就不用反复计算，于是可以省很多时间，<del>这就是动态规划</del><sup><a href="#fn_#" id="reffn_#">#</a></sup>。</p>
 <pre><code class="lang-c++">#include &lt;iostream&gt;
 #include &lt;string&gt;
 #include &lt;vector&gt;
