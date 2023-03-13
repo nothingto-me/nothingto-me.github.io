@@ -6,7 +6,7 @@
   <link href="https://blog.nothingto.me/atom.xml" rel="self"/>
   
   <link href="https://blog.nothingto.me/"/>
-  <updated>2022-12-04T09:02:21.914Z</updated>
+  <updated>2023-03-13T10:16:02.370Z</updated>
   <id>https://blog.nothingto.me/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>unordered_map 的三个小例子</title>
+    <link href="https://blog.nothingto.me/unordered_map-3-example"/>
+    <id>https://blog.nothingto.me/unordered_map-3-example</id>
+    <published>2023-03-13T09:14:04.000Z</published>
+    <updated>2023-03-13T10:16:02.370Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;人生就是总有一天你会去写自己最讨厌的算法题，但是 &lt;code&gt;unordered_map&lt;/code&gt; 确实好使。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Algorithm" scheme="https://blog.nothingto.me/tags/Algorithm/"/>
+    
+    <category term="C++" scheme="https://blog.nothingto.me/tags/C/"/>
+    
+  </entry>
   
   <entry>
     <title>当我看到一个东西</title>
