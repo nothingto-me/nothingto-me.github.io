@@ -50,7 +50,7 @@
 body {
   background-image: var(--background-image);
   background-attachment: scroll;
-  font-family: Lato, Helvetica, Tahoma, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", Heiti, ubuntu, SimSun, sans-serif;
+  font-family: Helvetica, Tahoma, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", Heiti, ubuntu, SimSun, sans-serif;
   font-size: 1.125rem;
   line-height: 1.7;
   background-color: white;
