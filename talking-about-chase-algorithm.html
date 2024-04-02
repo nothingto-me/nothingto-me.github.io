@@ -1,0 +1,363 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="&lt;a href=&quot;https://en.wikipedia.org/wiki/Chase_%28algorithm%29&quot;&gt;这个算法&lt;/a&gt;本身并不难，就从那个大家都喜欢的例子来开始细说。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>谈无损连接分解判别算法</title><link rel="Shortcut Icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"Nothingto-Me",utcoffset:"8"}))};sessionStorage.setItem("_swa","1");</script><meta name="generator" content="Hexo 5.4.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Note/" rel="tag">#Note</a> <a class="post-tag-none-link" href="/tags/ProblemSolving/" rel="tag">#ProblemSolving</a> <a class="post-tag-none-link" href="/tags/RelationalAlgebra/" rel="tag">#RelationalAlgebra</a></div><div class="post-time">2021-04-15</div></div></div><div class="container post-header"><h1>谈无损连接分解判别算法</h1></div><div class="container post-content"><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Chase_%28algorithm%29">这个算法</a>本身并不难，就从那个大家都喜欢的例子来开始细说。</p>
+<p>说对于关系模式 <script type="math/tex">R(ABCDE)</script>，有函数依赖</p>
+<script type="math/tex; mode=display">F=\{A\rightarrow C,B\rightarrow C,C\rightarrow D,DE\rightarrow C,CE\rightarrow A \}</script><p>要判断</p>
+<script type="math/tex; mode=display">\rho=\{R_1(AD),R_2(AB),R_3(BE),R_4(CDE),R_5(AE)\}</script><p>是不是一个<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Lossless_join_decomposition">无损连接的分解</a>；换言之，要判断是否</p>
+<script type="math/tex; mode=display">R_{1}\bowtie R_{2}\bowtie R_{3}\bowtie R_{4}\bowtie R_{5}=R</script><p>成立。这里的 <script type="math/tex">R_1=\Pi_{AD}(R)</script>，所以也就是判断</p>
+<script type="math/tex; mode=display">\Pi_{AD}(R)\bowtie\Pi_{AB}(R)\bowtie\Pi_{BE}(R)\bowtie\Pi_{CDE}(R)\bowtie\Pi_{AE}(R)=R</script><p>是否成立。我们把等式左半边写作 <script type="math/tex">m_{\rho}(R)</script>，代表 <script type="math/tex">R</script> 在分解 <script type="math/tex">\rho</script> 上的投影连接。</p>
+<p>能看出来，<script type="math/tex">R</script> 中的元组必定包含在 <script type="math/tex">m_{\rho}(R)</script> 中，所以需要判断的是 <script type="math/tex">m_{\rho}(R)</script> 中的元组必定是 <script type="math/tex">R</script> 中的元组。</p>
+<p>怎么判断呢？<script type="math/tex">m_{\rho}(R)</script> 中的元组都是 <script type="math/tex">R</script> 中元组的一些局部再自然连接得来的。如果我们假设 <script type="math/tex">m_{\rho}(R)</script> 中有一不存在于 <script type="math/tex">R</script> 中的元组 <script type="math/tex">r=(a,b,c,d,e)</script>，它是由什么得来的？</p>
+<p><script type="math/tex">r</script> 来自 <script type="math/tex">R_{i}</script> 中的各个元组的连接，比如作为 <script type="math/tex">R_{1}</script> 的一个元组的 <script type="math/tex">r_{1}=(a,d)</script>；显然， <script type="math/tex">r</script> 必定是由 <script type="math/tex">r_{1}</script> 和类似的 <script type="math/tex">r_{2}</script>、<script type="math/tex">r_{3}</script>、<script type="math/tex">r_{4}</script> 及 <script type="math/tex">r_{5}</script> 进行自然连接的结果。而 <script type="math/tex">r_{1}</script> 来自于 <script type="math/tex">R</script> 中的某个元组的投影，我们不妨称 <script type="math/tex">R</script> 中的这个元组为 <script type="math/tex">r_{1}^{\prime}</script>；对于这个元组，我们知道它在属性集 <script type="math/tex">A</script> 和 <script type="math/tex">D</script> 上的取值必定是 <script type="math/tex">a</script> 和 <script type="math/tex">d</script>．类似地，我们可以得到其它的 <script type="math/tex">r_{i}</script> 所来自的元组 <script type="math/tex">r_{i}^{\prime}</script> 在各属性集上的取值：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th><script type="math/tex">A</script></th>
+<th><script type="math/tex">B</script></th>
+<th><script type="math/tex">C</script></th>
+<th><script type="math/tex">D</script></th>
+<th><script type="math/tex">E</script></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><script type="math/tex">AD</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td></td>
+<td><script type="math/tex">d</script></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AB</script></td>
+<td><script type="math/tex">a</script></td>
+<td><script type="math/tex">b</script></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">BE</script></td>
+<td></td>
+<td><script type="math/tex">b</script></td>
+<td></td>
+<td></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">CDE</script></td>
+<td></td>
+<td></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AE</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td></td>
+<td></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>上表中第一行代表 <script type="math/tex">r_{1}^{\prime}</script>，它在 <script type="math/tex">AD</script> 上取值 <script type="math/tex">(a,d)</script>，以此类推；空下来的格子我们还不确定。如果无损连接分解不成立，那么上面的五个元组所生成的 <script type="math/tex">r</script> 就的确不在 <script type="math/tex">R</script> 中，换言之 <script type="math/tex">r_{i}^{\prime}\neq r</script>．当然了，这个表是平凡的；如果没有函数依赖关系，对于生成 <script type="math/tex">r</script> 的元组们我们就只能得出这点结论。</p>
+<p><script type="math/tex">R</script> 上的<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Functional_dependency">函数依赖</a> <script type="math/tex">A\rightarrow C</script> 就是说，如果 <script type="math/tex">R</script> 上的任两个元组在 <script type="math/tex">A</script> 上取值相同，则在 <script type="math/tex">C</script> 上必定取值相同，也就是说，对于 <script type="math/tex">R</script> 中的元组 <script type="math/tex">r_{1}^{\prime}</script>，如果我们已经知道 <script type="math/tex">r_{1}^{\prime}</script> 在 <script type="math/tex">A</script> 上取值 <script type="math/tex">a</script>（记作 <script type="math/tex">r_{1}^{\prime}[A]=a</script>），那么 <script type="math/tex">R</script> 中就不存在在 <script type="math/tex">A</script> 上取值 <script type="math/tex">a</script> 的元组的 <script type="math/tex">t</script>，使得 <script type="math/tex">t[C]\neq r_{1}^{\prime}[C]</script>．换言之，<script type="math/tex">R</script> 中在 <script type="math/tex">A</script> 上取值相同的元组，在 <script type="math/tex">C</script> 上的取值必定相同。<script type="math/tex">r_{i}^{\prime}</script> 都是 <script type="math/tex">R</script> 中的元组，它们都必须满足函数依赖。<script type="math/tex">r_{1}^{\prime}</script>， <script type="math/tex">r_{2}^{\prime}</script> 和 <script type="math/tex">r_{5}^{\prime}</script> 在 <script type="math/tex">A</script> 上都取值 <script type="math/tex">a</script>，所以我们可以得出结论，它们在 <script type="math/tex">C</script> 上也取相同的值，这个值我们暂时还不知道。我们把它记作 <script type="math/tex">c_{1}</script>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th><script type="math/tex">A</script></th>
+<th><script type="math/tex">B</script></th>
+<th><script type="math/tex">C</script></th>
+<th><script type="math/tex">D</script></th>
+<th><script type="math/tex">E</script></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><script type="math/tex">AD</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td><script type="math/tex">d</script></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AB</script></td>
+<td><script type="math/tex">a</script></td>
+<td><script type="math/tex">b</script></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">BE</script></td>
+<td></td>
+<td><script type="math/tex">b</script></td>
+<td></td>
+<td></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">CDE</script></td>
+<td></td>
+<td></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AE</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>再看下一个函数依赖 <script type="math/tex">B\rightarrow C</script>，它告诉我们在<script type="math/tex">B</script> 上取值相等的 <script type="math/tex">r_{2}^{\prime}</script> 和 <script type="math/tex">r_{3}^{\prime}</script> 在 <script type="math/tex">C</script> 上取值也相等。我们已经知道 <script type="math/tex">r_{2}^{\prime}[C]=c_{1}</script>，所以 <script type="math/tex">r_{3}^{\prime}[C]=c_{1}</script>．</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th><script type="math/tex">A</script></th>
+<th><script type="math/tex">B</script></th>
+<th><script type="math/tex">C</script></th>
+<th><script type="math/tex">D</script></th>
+<th><script type="math/tex">E</script></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><script type="math/tex">AD</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td><script type="math/tex">d</script></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AB</script></td>
+<td><script type="math/tex">a</script></td>
+<td><script type="math/tex">b</script></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">BE</script></td>
+<td></td>
+<td><script type="math/tex">b</script></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">CDE</script></td>
+<td></td>
+<td></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AE</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>下一个函数依赖 <script type="math/tex">C\rightarrow D</script>．我们可以看到有四个元组在 <script type="math/tex">C</script> 上取值 <script type="math/tex">c_{1}</script>，它们在 <script type="math/tex">D</script> 上取的值也一定相等。但是这次，这个相等的值就不是我们不知道的值了：<script type="math/tex">r_{1}^{\prime}[D]=d</script>，也就是说其它三个元组在 <script type="math/tex">D</script> 上也必定取 <script type="math/tex">d</script>．</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th><script type="math/tex">A</script></th>
+<th><script type="math/tex">B</script></th>
+<th><script type="math/tex">C</script></th>
+<th><script type="math/tex">D</script></th>
+<th><script type="math/tex">E</script></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><script type="math/tex">AD</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td><script type="math/tex">d</script></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AB</script></td>
+<td><script type="math/tex">a</script></td>
+<td><script type="math/tex">b</script></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td><script type="math/tex">d</script></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">BE</script></td>
+<td></td>
+<td><script type="math/tex">b</script></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">CDE</script></td>
+<td></td>
+<td></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AE</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c_{1}</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>从 <script type="math/tex">DE\rightarrow C</script> 中得出的结论是 <script type="math/tex">r_{3}^{\prime}</script>， <script type="math/tex">r_{5}^{\prime}</script> 和 <script type="math/tex">r_{4}^{\prime}</script> 一样，在 <script type="math/tex">C</script> 上取值 <script type="math/tex">c</script>．我们所不知道的那个值 <script type="math/tex">c_{1}</script>，其实就是 <script type="math/tex">c</script> 自己！于是我们把表中所有的 <script type="math/tex">c_{1}</script> 都改写成 <script type="math/tex">c</script>．</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th><script type="math/tex">A</script></th>
+<th><script type="math/tex">B</script></th>
+<th><script type="math/tex">C</script></th>
+<th><script type="math/tex">D</script></th>
+<th><script type="math/tex">E</script></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><script type="math/tex">AD</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AB</script></td>
+<td><script type="math/tex">a</script></td>
+<td><script type="math/tex">b</script></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">BE</script></td>
+<td></td>
+<td><script type="math/tex">b</script></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">CDE</script></td>
+<td></td>
+<td></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AE</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>还有一个函数依赖 <script type="math/tex">CE\rightarrow A</script>，告诉我们 <script type="math/tex">r_{3}^{\prime}</script> 和 <script type="math/tex">r_{4}^{\prime}</script> 在 <script type="math/tex">A</script> 上取值 <script type="math/tex">a</script>．</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th><script type="math/tex">A</script></th>
+<th><script type="math/tex">B</script></th>
+<th><script type="math/tex">C</script></th>
+<th><script type="math/tex">D</script></th>
+<th><script type="math/tex">E</script></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><script type="math/tex">AD</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AB</script></td>
+<td><script type="math/tex">a</script></td>
+<td><script type="math/tex">b</script></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">BE</script></td>
+<td><script type="math/tex">a</script></td>
+<td><script type="math/tex">b</script></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">CDE</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">AE</script></td>
+<td><script type="math/tex">a</script></td>
+<td></td>
+<td><script type="math/tex">c</script></td>
+<td><script type="math/tex">d</script></td>
+<td><script type="math/tex">e</script></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>改写到这里我们就可以停一下，看看表中第三行的 <script type="math/tex">r_{3}^{\prime}</script>．我们现在知道它的取值是 <script type="math/tex">(a,b,c,d,e)</script>，和那个不应该存在在 <script type="math/tex">R</script> 中的元组 <script type="math/tex">r</script> 的取值相同。<script type="math/tex">r_{3}^{\prime}</script> 其实就是 <script type="math/tex">r</script> 本身！但是，<script type="math/tex">r_{3}^{\prime}</script> 是 <script type="math/tex">R</script> 中的一个元组才对。</p>
+<p>表中出现这样的一行，代表我们最初的假设是错误的：<script type="math/tex">m_{\rho}(R)</script> 中没有哪个元组不存在于 <script type="math/tex">R</script> 中。换言之，<script type="math/tex">m_{\rho}(R)</script> 中的元组必定是 <script type="math/tex">R</script> 中的元组。这样，我们就通过上面的步骤判断出，<script type="math/tex">\rho</script> 是 <script type="math/tex">R</script> 的一个无损连接分解，这些步骤就是无损连接分解的判别算法，或者称为追踪算法（chase algorithm）。</p>
+<hr>
+<p>以上的说明不太严谨，Jan Hidders 在 Quora 上给出了一个<a target="_blank" rel="noopener" href="https://www.quora.com/What-is-an-intuitive-explanation-for-the-Chase-algorithm/answer/Jan-Hidders">使用形式逻辑、更加严谨的解释</a>。</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/darkjax.css">
+
+</div></div><div class="post-main misc"><div class="prev-nav"><div class="nav-left"><</div><div class="link-left"> <a href="/compsci-tales-transmission">传输</a></div></div><div class="next-nav"><link-right><a href="/tcp-without-practice">纸上谈 TCP</a></link-right><div class="nav-right">></div></div><script src="/js/highlight.pack.js"></script>
+<script src="/js/highlight.line-number.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script></div></article><footer class="footer wrapper"><div class="social"><a href="mailto:mail@nothingto.me" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="/OpenPGP_0x5574255F8C7E37FC.asc" target="_blank"><i class="fa fa-key"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer-content">(ɔ) 2024 <a href="/" rel="nofollow">Nothing</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/hexo-theme-noise">noise</a>.</div></footer><link rel="stylesheet" type="text/css" href="/css/remix.css"><link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></body></html>

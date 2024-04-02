@@ -1,0 +1,88 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一个关于网络协议栈的拟人化类比，和这个类比到底合不合适的小故事。这个故事属于&lt;a href=&quot;/tags/CompSciTales/&quot;&gt;计算机科学小故事&lt;/a&gt;系列。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>传输</title><link rel="Shortcut Icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"Nothingto-Me",utcoffset:"8"}))};sessionStorage.setItem("_swa","1");</script><meta name="generator" content="Hexo 5.4.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Artwork/" rel="tag">#Artwork</a> <a class="post-tag-none-link" href="/tags/CompSciTales/" rel="tag">#CompSciTales</a> <a class="post-tag-none-link" href="/tags/ComputerNetwork/" rel="tag">#ComputerNetwork</a></div><div class="post-time">2021-10-04</div></div></div><div class="container post-header"><h1>传输</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%A0%E8%BE%93"><span class="toc-number">1.</span> <span class="toc-text">传输</span></a></li></ol></details></div><div class="container post-content"><p>一个关于网络协议栈的拟人化类比，和这个类比到底合不合适的小故事。这个故事属于<a href="/tags/CompSciTales/">计算机科学小故事</a>系列。</p>
+<h2 id="传输"><a href="#传输" class="headerlink" title="传输"></a>传输</h2><p>张小过造了个机器人，他给机器人取名叫小派。小派对这个名字感到很开心。</p>
+<p>张小过对小派说：「我现在告诉你你的任务，我的同学李维要学计算机网络，我这里有一本《计算机网络》的教材，我要把它送到李维家里，你去帮我看看李维在不在家。」</p>
+<p>小派说：「我还以为你是让我把《计算机网络》直接送到李维家。为什么还要花时间去看他在不在家？还有如果要传教材的话，直接用电子邮件把PDF版本传给他不是更快吗？」</p>
+<p>张小过说：「那是因为这本《计算机网络》是限量版，上面有两位作者 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Vint_Cerf">Vinton Cerf</a> 和 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Bob_Kahn">Robert Kahn</a> 的亲笔签名，很贵重的。如果李维不在家，你多半只能把书扔门外，那丢了可不行。还有我说送实体书就送实体书，对着屏幕看久了会眼花然后掉头发的，你根本不知道头发对我们来说有多么宝贵。」</p>
+<p>小派说：「你别以为你把他俩名字写成英文的我就认不出来了，虽然他俩大佬是互联网之父，但他俩是工程师，我可以确定他们没写过什么《计算机网络》的教材。」</p>
+<p>张小过说：「反正这本书很贵重就是了，你丢不起的。快去快去，坐地铁，李维家就在鲍勃街1024号。」</p>
+<p>小派说：「我来回一趟，不是要花很多地铁票钱吗？」</p>
+<p>张小过说：「说了书很贵重，地铁票钱比起书来说都是合理的代价，我要用票的成本来换取书的完整送达。再说你可以用我的地铁月卡，这个月你来回多少趟都不要钱。」</p>
+<p>小派说：「可还行。」于是就拿上月卡出发了。</p>
+<p>小派走到楼下的地铁站里，发现张小过的同学赵露亭正坐在售票处边上。于是小派去和她打招呼。</p>
+<p>小派说：「你好啊！你怎么在地铁站里坐着，课余时间不去见见太阳吗？」</p>
+<p>赵露亭说：「我又不是需要光合作用的植物，也不是太阳能电池板。我课余时间在地铁站待着是因为地铁就是我的爱好。我把业余时间花在爱好上，天经地义。要找我的时候来地铁站准没错。」</p>
+<p>小派说：「哇哦。既然你是地铁专家，那告诉我我应该怎么找到住鲍勃街1024号的李维呢？」</p>
+<p>赵露亭说：「这很简单，看这张地铁路线图就可以了。」</p>
+<p>赵露亭把小派拉到墙上挂着的一张地图那。</p>
+<p>小派说：「哇哦，我好像说了两遍哇哦了，我一定不说第三遍。这张地图上的这些成网状的五颜六色的线是什么？」</p>
+<p>赵露亭说：「这就是地铁线路，你坐上地铁可以在线上旅行，线路上的那些点就是地铁车站。」</p>
+<p>小派问：「那这个多条线路交在一起的点是什么？」</p>
+<p>赵露亭说：「是换乘站。在那里可以坐多条地铁，你坐哪条取决于你想去哪里。」</p>
+<p>「酷，」小派说，「那这个像个环环的线是什么？」</p>
+<p>「是环线。」赵露亭说。</p>
+<p>「那这个直直的线是什么？」</p>
+<p>「是直线……啊不对，这就是普通的地铁线，被你绕进去了。总之你想去鲍勃街的话，可以坐地铁到探险者公园站下，再走一段路就到了。」赵露亭说着把地图上的鲍勃街和探险者公园站指给小派看。</p>
+<p>「我知道了。」小派点点头，「但是还有一个问题，这个地铁线路网看起来错综复杂，我应该怎样才能最快地到达探险者公园站呢？」</p>
+<p>「这很简单，」赵露亭说，「你如果想找出最快的线路，只要对每条线路的时间和搭乘人数了如指掌就行了。比如现在正好是上下班时间，整个地铁网络负载都很重，这时候千万不要去中心广场乘一号线，那里全是人。」</p>
+<p>小派说：「但我是个地铁新手，我根本不了解这些线路。大佬能不能为我推荐一条？」</p>
+<p>「那当然可以了，我知道去每个站的最佳路线。」赵露亭说，「我们现在在四色之门站，搭上往狐村方向的三号线，然后在百货大楼换乘环线坐到演示口，换乘五号线坐到伊芙路，再换乘二号线到探险者公园就可以了。我保证这是目前这个时间最快的线路。」</p>
+<p>「原来如此，我完全记住了。」小派说，「大佬能不能慢点儿再说一遍？」</p>
+<p>赵露亭说：「看你是第一次乘地铁，迷路了就不好了，虽然如果你真想迷路我也管不着。我给你写张备忘吧，照着这个换乘就可以了。」</p>
+<p>小派拿着纸条下了站台，等到狐村方向的三号线开来的时候上了车，车上有不少人；等到百货大楼站到了时小派去换乘了环线，环线的人比三号线的人多，以至于小派在地铁站等了一班车，才上了环线。</p>
+<p>环线上的每站都很忙碌，有很多人上上下下。但是等到环线开到了演示口，小派下车的时候，下车的却只有小派一个；演示口的五号线车站里也是一个人都没有。</p>
+<p>小派独自站在车站里，突然看到地铁轨道的远方有光在规律地闪烁着。光越来越亮，地铁站的大屏幕上面也显示着「演示口列车即将到站」。</p>
+<p>轨道上开来了一列很短的车，车在站台边停住了，里面有个人在向小派招手。</p>
+<p>车门开了，小派跳上了车。他看到那个人按了一些按钮，车门就关上了，地铁缓缓地开始行驶。</p>
+<p>小派问：「你是谁？你在这里干什么？」</p>
+<p>「我？我姓何，你可以叫我何叔。」那人说，「我是开地铁的。」</p>
+<p>「你是地铁司机？」</p>
+<p>「不是，我是开地铁的。」</p>
+<p>小派很疑惑：「开地铁的时候不是不能和人说话吗？」</p>
+<p>何叔说：「没事儿，小伙子你不是人。随便聊，有啥不懂的都问我。」</p>
+<p>小派说：「那我问了，我想知道这些地铁线路，它们这么复杂，到底是一直存在的还是被制造出来的。」</p>
+<p>何叔说：「当然是被制造出来的，挖地铁隧道的机器叫盾构机，它开到哪哪就铺出条道来，这些网络全是人为规划的。现在很多年轻人，虽然地铁坐得多但都把它当成理所当然的。他们应该都来演示口坐趟车。」</p>
+<p>小派说：「盾构机，听起来好厉害，它和我一样都在为人服务。我有空一定要找盾构机聊天。」</p>
+<p>何叔说：「小伙子你讲话真有意思。盾构机和你不一样，它大多了，而且它要保证挖出来的地铁隧道够结实，不会塌了。如果隧道塌了，我开地铁肯定开不过去，乘客自然也都过不去了。盾构机很重要的，挖隧道的时候更像是人在围着它转。」</p>
+<p>小派说：「那听起来更厉害了，盾构机自己就能把地铁线路开起来，我要向它学习。」</p>
+<p>何叔说：「那可不止，盾构机只是把线路给挖通了而已，各个站点还需要建立在线路上的一系列服务系统，比如站台、售票处、地面上的设施。当然还需要我这样的开地铁的，地铁线要运转起来，这些是缺一不可的。」</p>
+<p>小派说：「原来如此，大家都很重要，我明白了。」</p>
+<p>说话之间已经又过了一站，这一站也没有人上车。何叔问：「小伙子你到哪？」</p>
+<p>小派说：「我到李维家。不对，我到伊芙路站下。有个很了解地铁的人帮我记下了这条路线。」</p>
+<p>何叔说：「原来如此，小伙子你果然是第一次坐地铁。伊芙路站已经准备好接收这趟车了。」</p>
+<p>小派说：「难道坐地铁的这么多人，都知道地铁是如何工作的吗？」</p>
+<p>何叔说：「那倒不是。虽然即使你不了解地铁是谁挖的，也不妨碍坐地铁，但是地铁爱好者都会去了解，而地铁工作人员必须要了解。」</p>
+<p>闪烁的车灯照亮了前方的轨道，短短的列车开始减速。「前面就是伊芙路站，」何叔说，「下车吧，小伙子。我作为开演示口列车的人，希望能有更多的人成为地铁爱好者。」</p>
+<p>车稳稳地停在站台前，车门和站台门对齐了。小派跳下车，发现站台上还是一个人都没有。</p>
+<p>之后小派换乘了二号线。二号线上的人不是太多，小派在探险者公园站下了车，刷张小过的月卡出了站。小派把赵露亭写的纸条丢在车站门口的可回收物垃圾桶里。</p>
+<p>小派沿着鲍勃街往前走，走到了李维家门口，敲了敲门。小派在门口坐下来，等李维回应。</p>
+<p>十分钟后，门里传来李维的声音：「哪位？」</p>
+<p>小派朝门里喊：「张小过要给李维送一本书。请问李维在家吗？」</p>
+<p>李维说：「我在家。」</p>
+<p>小派站起来，转身走向探险者公园地铁站，准备把李维在家的事情告诉张小过。</p>
+<p>走下地铁站，小派一眼就看见了盯着地图看的赵露亭。小派走上去说：「怎么老是你？」</p>
+<p>赵露亭说：「说了我是地铁爱好者，你上地铁站找我就准没错了。」</p>
+<p>小派说：「不过我不是要找你，我要去找张小过，告诉他李维在家的事情。你给我写的路线的纸条我已经都记住了，按那张纸条上写的回去就可以了吧？」</p>
+<p>「不可以，」赵露亭说，「地铁线路瞬息万变，之前的线路现在已经不一定管用了。比如现在五号线停运了。」</p>
+<p>「停运了？」小派感到惊讶，「为什么？」</p>
+<p>「可能是因为那条线没有地铁司机吧，我不清楚，但总之停运了。」赵露亭说，「而且现在也不是上下班高峰了，一号线已经可以坐了，所以你不用担心回不去。」</p>
+<p>「哇哦。」小派说。</p>
+<p>「你从这里坐到电气展览馆，」赵露亭说，「然后换乘一号线，到了中心广场之后换乘三号线到四色之门就行了。这条路线比来的路线需要的换乘少，但这不代表它就短了，因为每两个换乘站之间的路线更长。」</p>
+<p>「原来如此，」小派说，「好的大佬，我完全记住……」</p>
+<p>赵露亭叹了口气：「我忘了你是第一次乘地铁，还是写个备忘吧。」</p>
+<p>回去的路上即使是最拥挤的一号线人都很少，但没有遇到完全没有人的地铁站。小派一路上很顺利地回到了四色之门站，四色之门站在艾丽丝大道上。小派丢掉了赵露亭写的纸条，沿着艾丽丝大道找到了470号，张小过的家。</p>
+<p>小派站在张小过家门口若有所思。一会儿之后，小派打开了门。</p>
+<p>张小过一直坐在自己的电脑跟前等小派，看到小派进门，他站了起来。</p>
+<p>小派说：「李维在家，虽然我等了十分钟他才来应门，我差点当他不在家处理了。等得久一点也不错，虽然如果是人类来等的话会觉得是浪费时间，你们总是有很多事要做。」</p>
+<p>张小过说：「不错啊，咱城市里面四条地铁线一条环线，你第一次坐地铁居然没迷路。下一步就是把书给李维了。」</p>
+<p>小派说：「我一直想说，你指挥我干这个干那个，其实是想拿这些隐喻网络分层对吧？我是传输层，赵露亭是网络层，开地铁的何叔是数据链路层，你其实是要我维护一个端到端的连接用来进行可靠数据传输。不然你送的书为什么是《计算机网络》。」</p>
+<p>张小过说：「你血口喷人，我造机器人当然是为了减少我自己的劳动，我为什么要去关心你路上都遇到什么人、干了什么事。」</p>
+<p>小派说：「我有个决定性证据，你写文章起的名字就叫《传输》，你骗不了我的。」</p>
+<p>张小过说：「你不知道我是个起名废吗？你看我叫什么名字、其他人叫什么名字。还有地铁站都叫什么名字，不知道你能不能发现地铁站名字里的哏。不过你好像挺喜欢你自己的名字，那没准你也是个起名废。还有，你压根就不是传输层，我才是传输层，你就是一数据包（packet）。准确来说，从李维家回来的你已经不是出门的那个你了。」</p>
+<p>小派说：「你别搞这种同一性悖论，你就交代吧，是不是想拿这个故事隐喻网络分层。」</p>
+<p>「我偏不，」张小过说，「我要说的其实是，用隐喻是学不好网络分层的，首先隐喻传达的东西八成是错的；然后协议的实现远远比这些现实中的运输什么的要精准；而且现实比网络复杂，现实的人也比网络协议智能，网络构成里那些明确的分层往现实里搬就会显得怪怪的还浪费时间，比如说：我有空造一个机器人，为什么不自己发快递或者传 PDF 呢？」</p>
+<p>小派说：「其他的我持保留意见，不过最后一个问题是你自己文笔的问题，你文笔很烂所以写不出自然的现实分层场景。」</p>
+<p>张小过说：「你说得对。」他拍了拍手，小派就消失了。然后他坐下来打开自己的电脑，准备用电子邮件给李维传输《计算机网络》的 PDF 版本。</p>
+</div></div><div class="post-main misc"><div class="prev-nav"><div class="nav-left"><</div><div class="link-left"> <a href="/compsci-tales-a-tale-in-memory">记忆中的故事</a></div></div><div class="next-nav"><link-right><a href="/talking-about-chase-algorithm">谈无损连接分解判别算法</a></link-right><div class="nav-right">></div></div><script src="/js/highlight.pack.js"></script>
+<script src="/js/highlight.line-number.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script></div></article><footer class="footer wrapper"><div class="social"><a href="mailto:mail@nothingto.me" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="/OpenPGP_0x5574255F8C7E37FC.asc" target="_blank"><i class="fa fa-key"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer-content">(ɔ) 2024 <a href="/" rel="nofollow">Nothing</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/hexo-theme-noise">noise</a>.</div></footer><link rel="stylesheet" type="text/css" href="/css/remix.css"><link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></body></html>

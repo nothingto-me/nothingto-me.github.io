@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Nothing</title>
+  
+  <subtitle>I am Owner of My Creation</subtitle>
+  <link href="https://blog.nothingto.me/atom.xml" rel="self"/>
+  
+  <link href="https://blog.nothingto.me/"/>
+  <updated>2024-04-02T14:45:05.102Z</updated>
+  <id>https://blog.nothingto.me/</id>
+  
+  <author>
+    <name>Me</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用 ASP 编码规划，但是化简版</title>
+    <link href="https://blog.nothingto.me/asp-for-planning-but-simplified"/>
+    <id>https://blog.nothingto.me/asp-for-planning-but-simplified</id>
+    <published>2024-04-02T13:44:20.000Z</published>
+    <updated>2024-04-02T14:45:05.102Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://assets.cambridge.org/97805218/18025/sample/9780521818025ws.pdf&quot;&gt;Knowledge Representation, Reasoning and Declarative Problem Solving&lt;/a&gt; 中给出了一个使用 &lt;a href=&quot;https://en.wikipedia.org/wiki/Answer_set_programming&quot;&gt;Answer Set Prolog&lt;/a&gt; 编码规划的方法，以下代码是书中给出的一个编码积木世界规划问题。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="LogicProgramming" scheme="https://blog.nothingto.me/tags/LogicProgramming/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>unordered_map 的三个小例子</title>
+    <link href="https://blog.nothingto.me/unordered_map-3-example"/>
+    <id>https://blog.nothingto.me/unordered_map-3-example</id>
+    <published>2023-03-13T09:14:04.000Z</published>
+    <updated>2023-03-13T10:33:41.071Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;人生就是总有一天你会去写自己最讨厌的算法题，但是 &lt;code&gt;unordered_map&lt;/code&gt; 确实好使。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ProblemSolving" scheme="https://blog.nothingto.me/tags/ProblemSolving/"/>
+    
+    <category term="Algorithm" scheme="https://blog.nothingto.me/tags/Algorithm/"/>
+    
+    <category term="C++" scheme="https://blog.nothingto.me/tags/C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>当我看到一个东西</title>
+    <link href="https://blog.nothingto.me/when-i-see-a-thing"/>
+    <id>https://blog.nothingto.me/when-i-see-a-thing</id>
+    <published>2022-12-03T07:49:34.000Z</published>
+    <updated>2022-12-04T09:02:21.914Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;当我看到一个东西的时候，我说：「这是一个东西。」东西也表示赞同。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+    <category term="English" scheme="https://blog.nothingto.me/tags/English/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>无政府超人类主义问答</title>
+    <link href="https://blog.nothingto.me/anarcho-transhumanist-faq-zh-cn"/>
+    <id>https://blog.nothingto.me/anarcho-transhumanist-faq-zh-cn</id>
+    <published>2021-12-02T06:43:07.000Z</published>
+    <updated>2023-03-13T10:19:23.546Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;翻译自 &lt;a href=&quot;http://blueshifted.net/faq/&quot;&gt;@H+ Frequently Asked Questions&lt;/a&gt;，原作者威廉·吉利斯（William Gillis）。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Philosophy" scheme="https://blog.nothingto.me/tags/Philosophy/"/>
+    
+    <category term="Translation" scheme="https://blog.nothingto.me/tags/Translation/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Qubes OS 安装与代理部署</title>
+    <link href="https://blog.nothingto.me/qubes-os-with-proxy-install"/>
+    <id>https://blog.nothingto.me/qubes-os-with-proxy-install</id>
+    <published>2021-10-17T03:17:56.000Z</published>
+    <updated>2021-11-13T09:11:36.860Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Qubes_OS&quot;&gt;Qubes OS&lt;/a&gt; 是一个通过隔离（isolation）加强安全的&lt;del&gt;虚拟机集群&lt;/del&gt;桌面操作系统。本文将通过复读 &lt;a href=&quot;https://www.qubes-os.org/doc/&quot;&gt;Qubes OS 官方文档&lt;/a&gt;的方式教你安装这个操作系统并为其部署代理（作为 Tor 的前置代理）。当然，本文不能解决你在安装过程中遇到的大部分问题，如果你遇到了我也没遇到过的问题请参考官网的&lt;a href=&quot;https://www.qubes-os.org/doc/#troubleshooting&quot;&gt;故障排除指南&lt;/a&gt;或在相关社区中进行提问。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Tutorial" scheme="https://blog.nothingto.me/tags/Tutorial/"/>
+    
+    <category term="Linux" scheme="https://blog.nothingto.me/tags/Linux/"/>
+    
+    <category term="CyberSecurity" scheme="https://blog.nothingto.me/tags/CyberSecurity/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>炼金术的未来</title>
+    <link href="https://blog.nothingto.me/compsci-tales-the-future-of-alchemy"/>
+    <id>https://blog.nothingto.me/compsci-tales-the-future-of-alchemy</id>
+    <published>2021-10-04T10:03:43.000Z</published>
+    <updated>2021-10-19T13:50:25.441Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个关于&lt;del&gt;深度学习&lt;/del&gt;炼金术的故事。这个故事属于&lt;a href=&quot;/tags/CompSciTales/&quot;&gt;计算机科学小故事&lt;/a&gt;系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+    <category term="CNN" scheme="https://blog.nothingto.me/tags/CNN/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>世界中心</title>
+    <link href="https://blog.nothingto.me/compsci-tales-the-center-of-umwelt"/>
+    <id>https://blog.nothingto.me/compsci-tales-the-center-of-umwelt</id>
+    <published>2021-10-04T09:03:43.000Z</published>
+    <updated>2021-10-20T03:02:41.617Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个告诉你不要玩手机了的故事。这个故事属于&lt;a href=&quot;/tags/CompSciTales/&quot;&gt;计算机科学小故事&lt;/a&gt;系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>层次结构</title>
+    <link href="https://blog.nothingto.me/compsci-tales-hierarchy"/>
+    <id>https://blog.nothingto.me/compsci-tales-hierarchy</id>
+    <published>2021-10-04T08:03:43.000Z</published>
+    <updated>2021-10-20T10:27:35.582Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个关于虚拟化和等级的老套路故事。这个故事属于&lt;a href=&quot;/tags/CompSciTales/&quot;&gt;计算机科学小故事&lt;/a&gt;系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>现在你有两个问题了</title>
+    <link href="https://blog.nothingto.me/compsci-tales-now-you-have-two-problems"/>
+    <id>https://blog.nothingto.me/compsci-tales-now-you-have-two-problems</id>
+    <published>2021-10-04T07:03:43.000Z</published>
+    <updated>2022-02-28T13:46:49.594Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个小故事，两个线程李 A 和萨 T 遇到了沟通的难题，而这一难题来自两者被分开这件事。这个故事属于&lt;a href=&quot;/tags/CompSciTales/&quot;&gt;计算机科学小故事&lt;/a&gt;系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记忆中的故事</title>
+    <link href="https://blog.nothingto.me/compsci-tales-a-tale-in-memory"/>
+    <id>https://blog.nothingto.me/compsci-tales-a-tale-in-memory</id>
+    <published>2021-10-04T06:03:43.000Z</published>
+    <updated>2021-10-19T13:51:58.757Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个关于递归和函数调用是什么的小故事。这个故事属于&lt;a href=&quot;/tags/CompSciTales/&quot;&gt;计算机科学小故事&lt;/a&gt;系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>传输</title>
+    <link href="https://blog.nothingto.me/compsci-tales-transmission"/>
+    <id>https://blog.nothingto.me/compsci-tales-transmission</id>
+    <published>2021-10-04T05:03:43.000Z</published>
+    <updated>2021-10-19T13:49:47.567Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;一个关于网络协议栈的拟人化类比，和这个类比到底合不合适的小故事。这个故事属于&lt;a href=&quot;/tags/CompSciTales/&quot;&gt;计算机科学小故事&lt;/a&gt;系列。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="CompSciTales" scheme="https://blog.nothingto.me/tags/CompSciTales/"/>
+    
+    <category term="Artwork" scheme="https://blog.nothingto.me/tags/Artwork/"/>
+    
+    <category term="ComputerNetwork" scheme="https://blog.nothingto.me/tags/ComputerNetwork/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>谈无损连接分解判别算法</title>
+    <link href="https://blog.nothingto.me/talking-about-chase-algorithm"/>
+    <id>https://blog.nothingto.me/talking-about-chase-algorithm</id>
+    <published>2021-04-15T10:05:27.000Z</published>
+    <updated>2021-10-20T06:05:48.319Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Chase_%28algorithm%29&quot;&gt;这个算法&lt;/a&gt;本身并不难，就从那个大家都喜欢的例子来开始细说。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ProblemSolving" scheme="https://blog.nothingto.me/tags/ProblemSolving/"/>
+    
+    <category term="Note" scheme="https://blog.nothingto.me/tags/Note/"/>
+    
+    <category term="RelationalAlgebra" scheme="https://blog.nothingto.me/tags/RelationalAlgebra/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>纸上谈 TCP</title>
+    <link href="https://blog.nothingto.me/tcp-without-practice"/>
+    <id>https://blog.nothingto.me/tcp-without-practice</id>
+    <published>2021-04-01T02:21:04.000Z</published>
+    <updated>2021-10-20T06:19:18.680Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;TCP（&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE&quot;&gt;传输控制协议&lt;/a&gt;，&lt;a href=&quot;https://en.wikipedia.org/wiki/Transmission_Control_Protocol&quot;&gt;Transmission Control Protocol&lt;/a&gt;）可以说是 TCP/IP 协议族乃至所有网络通信协议中最重要的一个了；「TCP/IP 协议族」直接写了 TCP 的名字，还排在 IP 的前面&lt;del&gt;同为传输层的 UDP 看到都羡慕死了&lt;/del&gt;。这种重要性当然是有根据的，传输层的 TCP 起到了相当大的作用；这与 TCP 的设计是分不开的。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Note" scheme="https://blog.nothingto.me/tags/Note/"/>
+    
+    <category term="ComputerNetwork" scheme="https://blog.nothingto.me/tags/ComputerNetwork/"/>
+    
+    <category term="Protocols" scheme="https://blog.nothingto.me/tags/Protocols/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>R. P. Wolff 关于弗洛伊德的讲课</title>
+    <link href="https://blog.nothingto.me/robert-paul-wolff-lecture-on-freud"/>
+    <id>https://blog.nothingto.me/robert-paul-wolff-lecture-on-freud</id>
+    <published>2021-03-17T11:30:38.000Z</published>
+    <updated>2021-10-19T13:49:33.963Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Robert_Paul_Wolff&quot;&gt;Wolff 教授&lt;/a&gt;从五个问题出发，对&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E8%A5%BF%E6%A0%BC%E8%92%99%E5%BE%B7%C2%B7%E5%BC%97%E6%B4%9B%E4%BC%8A%E5%BE%B7&quot;&gt;弗洛伊德&lt;/a&gt;（&lt;a href=&quot;https://en.wikipedia.org/wiki/Sigmund_Freud&quot;&gt;Sigmund Freud&lt;/a&gt;）的理论及其产生的原因做了系统性的分析和讲解；这组讲课的目的是形成对现代资本主义的一体化认识，弗洛伊德的部分从个人心理方面着手。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Philosophy" scheme="https://blog.nothingto.me/tags/Philosophy/"/>
+    
+    <category term="Psychology" scheme="https://blog.nothingto.me/tags/Psychology/"/>
+    
+    <category term="Note" scheme="https://blog.nothingto.me/tags/Note/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Lisp 与变量与过程定义</title>
+    <link href="https://blog.nothingto.me/lisp-variable-procedure-definition"/>
+    <id>https://blog.nothingto.me/lisp-variable-procedure-definition</id>
+    <published>2021-03-11T14:36:01.000Z</published>
+    <updated>2021-10-20T06:19:46.142Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;Lisp 系的语言比起编程更像数学一点——过程是名副其实的「函数」表达式，程序的运行是在对其求值；整个程序可以按照求值的代换模型展开成一棵树。从这个角度来编程解决问题，不考虑变量和循环之类的，是一种全新的思路；比如对过程定义产生的新理解。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ProblemSolving" scheme="https://blog.nothingto.me/tags/ProblemSolving/"/>
+    
+    <category term="Lisp" scheme="https://blog.nothingto.me/tags/Lisp/"/>
+    
+    <category term="Math" scheme="https://blog.nothingto.me/tags/Math/"/>
+    
+    <category term="NumberTheory" scheme="https://blog.nothingto.me/tags/NumberTheory/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>穷举一道古典概率题</title>
+    <link href="https://blog.nothingto.me/a-classical-probability-problem-solving-with-brute-force"/>
+    <id>https://blog.nothingto.me/a-classical-probability-problem-solving-with-brute-force</id>
+    <published>2021-03-04T12:55:39.000Z</published>
+    <updated>2021-10-20T06:19:33.625Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;之前的数学老师遇到我不会做的古典概率题，有时候会告诉我：&lt;del&gt;那你就去穷举啊&lt;/del&gt;实在不会做就试着穷举看看，如果情况不多就还能做出来。不过穷举也和思路有关，因为穷举的时候首先要知道，列出的这些情况是否是&lt;strong&gt;等概率&lt;/strong&gt;的情况。比如下面这道题，是一个朋友问我的；这里有一个正确答案和一个错误答案。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ProblemSolving" scheme="https://blog.nothingto.me/tags/ProblemSolving/"/>
+    
+    <category term="Math" scheme="https://blog.nothingto.me/tags/Math/"/>
+    
+    <category term="Probability" scheme="https://blog.nothingto.me/tags/Probability/"/>
+    
+    <category term="Python" scheme="https://blog.nothingto.me/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://blog.nothingto.me/hello-world"/>
+    <id>https://blog.nothingto.me/hello-world</id>
+    <published>2021-03-03T05:41:34.000Z</published>
+    <updated>2021-10-17T15:25:31.180Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;前段时间把自己的社交媒体帐号全杀了以后，我发现自己面临着想发东西不知道往哪儿发的问题。这时候一个朋友和我提到他的博客的事情，再加上几天前看到一个近九十高龄的大佬还在非常自由地写&lt;a href=&quot;https://robertpaulwolff.blogspot.com/&quot;&gt;自己的博客&lt;/a&gt;，&lt;del&gt;使我的内心受到了震撼&lt;/del&gt;于是打算重新把博客建起来。总之建好了之后就是这样的。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Meta" scheme="https://blog.nothingto.me/tags/Meta/"/>
+    
+  </entry>
+  
+</feed>

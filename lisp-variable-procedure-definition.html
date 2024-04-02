@@ -1,0 +1,103 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Lisp 系的语言比起编程更像数学一点——过程是名副其实的「函数」表达式，程序的运行是在对其求值；整个程序可以按照求值的代换模型展开成一棵树。从这个角度来编程解决问题，不考虑变量和循环之类的，是一种全新的思路；比如对过程定义产生的新理解。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>Lisp 与变量与过程定义</title><link rel="Shortcut Icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"Nothingto-Me",utcoffset:"8"}))};sessionStorage.setItem("_swa","1");</script><meta name="generator" content="Hexo 5.4.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Lisp/" rel="tag">#Lisp</a> <a class="post-tag-none-link" href="/tags/Math/" rel="tag">#Math</a> <a class="post-tag-none-link" href="/tags/NumberTheory/" rel="tag">#NumberTheory</a> <a class="post-tag-none-link" href="/tags/ProblemSolving/" rel="tag">#ProblemSolving</a></div><div class="post-time">2021-03-11</div></div></div><div class="container post-header"><h1>Lisp 与变量与过程定义</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E5%AE%9A%E4%B9%89"><span class="toc-number">3.</span> <span class="toc-text">过程定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-number">4.</span> <span class="toc-text">附录</span></a></li></ol></details></div><div class="container post-content"><p>Lisp 系的语言比起编程更像数学一点——过程是名副其实的「函数」表达式，程序的运行是在对其求值；整个程序可以按照求值的代换模型展开成一棵树。从这个角度来编程解决问题，不考虑变量和循环之类的，是一种全新的思路；比如对过程定义产生的新理解。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>《<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9E%84%E9%80%A0%E5%92%8C%E8%A7%A3%E9%87%8A">计算机程序的构造和解释</a>》中的 1-28 题为了使用 <a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/%E7%B1%B3%E5%8B%92-%E6%8B%89%E5%AE%BE%E6%A3%80%E9%AA%8C">Miller-Rabin 检验</a>来确定数 <script type="math/tex">n</script> 是否是素数，要求修改之前使用过的，用于计算 <script type="math/tex">base^{exp} \bmod m</script> 的递归过程 <code>expmod</code> ：</p>
+<pre><code class="lang-Scheme">(define (expmod base exp m)
+    (cond
+        ((= exp 0) 1)
+        ((even? exp)
+            (remainder
+                (square (expmod base (/ exp 2) m))
+                m
+            )
+        )
+        (else
+            (remainder
+                (* base (expmod base (- exp 1) m))
+                m
+            )
+        )
+    )
+)
+</code></pre>
+<p>这个过程在 <code>exp</code> 为奇数时将结果乘以 <code>base</code>， <code>exp</code> 为偶数时对结果求平方；求平方的方法使得它计算同余幂只需要 <script type="math/tex">\log m</script> 的步骤。</p>
+<p>修改这个过程，使其在求平方的步骤中检查是否遇到了「 <script type="math/tex">1 \bmod n</script> 的非平凡平方根」，即是否</p>
+<script type="math/tex; mode=display">\exists x (x \neq 1 \land x \neq n - 1 \land x ^ {2} \equiv 1 \pmod m)</script><p>若上式对某一 <script type="math/tex">x</script> 成立，那么 <script type="math/tex">m</script> 就不是素数；若在任一时刻找到了这样的平方根，过程应当返回 0 ，否则返回 <script type="math/tex">base^{exp} \bmod m</script> ．</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>很容易就能写出满足上面的条件的、递归的 C 语言函数：</p>
+<pre><code class="lang-C">int expmod (int base, int exp, int m)
+&#123;
+    if (exp == 0) &#123;
+        return 1;
+    &#125; else if (exp % 2 == 0) &#123;
+        int r = expmod (base, exp / 2, m);
+        int x = (r * r) % m;
+        if (r == 1 || r == m - 1) &#123;
+            return x;
+        &#125; else &#123;
+            if (x == 1) &#123;
+                return 0;
+            &#125; else &#123;
+                return x;
+            &#125;
+        &#125;
+    &#125; else &#123;
+        return (expmod (base, exp - 1, m) * base) % m;
+    &#125;
+&#125;
+</code></pre>
+<p>在上面的函数中，一个很重要的部分就是使用了变量 <code>r</code> 和 <code>x</code> 来保存递归返回的结果 。如果不保存，就需要多次调用函数。</p>
+<p>如果在 Scheme 中，不使用中间变量而只考虑代换求值，会得到下面的树：</p>
+<p><img src="/lisp-variable-procedure-definition/expmod-bad.dot.svg" alt=""> </p>
+<p>上图的过程在所有需要的地方都重新递归调用了所需的过程，这导致了在指数 <code>exp</code> 为偶数的分支上，有一棵子树 <code>remainder</code> 被反复求值。图中在条件判断过程中求值的 <code>remainder</code> 子树被标为蓝色，在结果计算过程中求值的 <code>remainder</code> 子树被标为红色。</p>
+<p><code>remainder</code> 子树的反复求值增加了递归函数的时间复杂度：一个函数要调用自身 7 次，这是不可接受的。在 C 中这个函数只被调用了一次，在此之后用变量存储它的返回值以便继续使用。但是如果不使用变量呢？</p>
+<h2 id="过程定义"><a href="#过程定义" class="headerlink" title="过程定义"></a>过程定义</h2><p>Scheme 给出的解法是，在所有重复的 <code>remainder</code> 子树的公共祖先上，将它的后代重新定义为过程；这个新定义的过程作为原来的 <code>expmod</code> 的参数，而递归调用的 <code>expmod</code> 作为这个新定义的过程的参数。例如，将公共祖先 <code>(even? exp)</code> 结点的下方的分支定义为过程 <code>get-result</code>（这个过程可以理解为当 <code>exp</code> 为偶数时，取得所返回的结果），而 <code>remainder</code> 子树的值作为传给 <code>get-result</code> 过程的参数 <code>r</code>：</p>
+<p><img src="/lisp-variable-procedure-definition/get-result.dot.svg" alt=""> </p>
+<p>通过这种方式，改写后的 <code>expmod</code> 是这样的：</p>
+<p><img src="/lisp-variable-procedure-definition/expmod-good.dot.svg" alt=""> </p>
+<p>在这个 <code>expmod</code> 中，由于调用了 <code>get-result</code> ，使得 <code>remainder</code> 子树的求值次数从 7 次变回了 1 次。这就是「过程定义」的解法。</p>
+<p>这样的方法还可以继续使用，比如在 <code>get-result</code> 中求值了两次的<code>remainder</code> 和 <code>square</code> 过程，可以通过再重新定义过程 <code>test</code>（测试平方是否与 1 同余）来优化。</p>
+<p><img src="/lisp-variable-procedure-definition/get-result-better.dot.svg" alt=""> </p>
+<p>如果一个程序意义上的函数调用只允许传参数，而不在函数内部定义变量或更改变量的值（与此同时也禁用了循环——因为循环要求「状态」的改变），那它就类似数学意义上的函数：传入参数的类型是函数的定义域，返回值的类型是函数的值域。类似 <code>if</code> 和 <code>cond</code> 的条件选择则是对输入进行分段。函数调用的嵌套只不过是复合函数而已。</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>正经解法的 Scheme 代码（使用我流括号缩进）：</p>
+<pre><code class="lang-Scheme">(define (expmod base exp m)
+    (define (get-result r)
+        (define (test x)
+            (if (= x 1)
+                0
+                x
+            )
+        )
+        (cond
+            ((= r 0) 0)
+            ((or (= r 1) (= r (- m 1)))
+                (remainder (square r) m)
+            )
+            (else
+                (test
+                    (remainder (square r) m)
+                )
+            )
+        )
+    )
+    (cond
+        ((= exp 0) 1)
+        ((even? exp)
+            (get-result
+                (expmod base (/ exp 2) m)
+            )
+        )
+        (else
+            (remainder
+                (* base (expmod base (- exp 1) m))
+                m
+            )
+        )
+    )
+)
+</code></pre>
+<p><del>如果人们学习 Lisp 系的障碍只是括号堆一起看着烦的话，让它们不要堆一起就可以了</del></p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/darkjax.css">
+</div></div><div class="post-main misc"><div class="prev-nav"><div class="nav-left"><</div><div class="link-left"> <a href="/robert-paul-wolff-lecture-on-freud">R. P. Wolff 关于弗洛伊德的讲课</a></div></div><div class="next-nav"><link-right><a href="/a-classical-probability-problem-solving-with-brute-force">穷举一道古典概率题</a></link-right><div class="nav-right">></div></div><script src="/js/highlight.pack.js"></script>
+<script src="/js/highlight.line-number.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script></div></article><footer class="footer wrapper"><div class="social"><a href="mailto:mail@nothingto.me" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="/OpenPGP_0x5574255F8C7E37FC.asc" target="_blank"><i class="fa fa-key"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer-content">(ɔ) 2024 <a href="/" rel="nofollow">Nothing</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/hexo-theme-noise">noise</a>.</div></footer><link rel="stylesheet" type="text/css" href="/css/remix.css"><link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></body></html>

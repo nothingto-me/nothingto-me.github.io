@@ -1,0 +1,80 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="TCP（&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE&quot;&gt;传输控制协议&lt;/a&gt;，&lt;a href=&quot;https://en.wikipedia.org/wiki/Transmission_Control_Protocol&quot;&gt;Transmission Control Protocol&lt;/a&gt;）可以说是 TCP/IP 协议族乃至所有网络通信协议中最重要的一个了；「TCP/IP 协议族」直接写了 TCP 的名字，还排在 IP 的前面&lt;del&gt;同为传输层的 UDP 看到都羡慕死了&lt;/del&gt;。这种重要性当然是有根据的，传输层的 TCP 起到了相当大的作用；这与 TCP 的设计是分不开的。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>纸上谈 TCP</title><link rel="Shortcut Icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"Nothingto-Me",utcoffset:"8"}))};sessionStorage.setItem("_swa","1");</script><meta name="generator" content="Hexo 5.4.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/ComputerNetwork/" rel="tag">#ComputerNetwork</a> <a class="post-tag-none-link" href="/tags/Note/" rel="tag">#Note</a> <a class="post-tag-none-link" href="/tags/Protocols/" rel="tag">#Protocols</a></div><div class="post-time">2021-04-01</div></div></div><div class="container post-header"><h1>纸上谈 TCP</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E5%8F%B7%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">序号的设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E7%9A%84%E6%8E%A7%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">连接的控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-%E9%A6%96%E9%83%A8"><span class="toc-number">3.</span> <span class="toc-text">TCP 首部</span></a></li></ol></details></div><div class="container post-content"><p>TCP（<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AE">传输控制协议</a>，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol">Transmission Control Protocol</a>）可以说是 TCP/IP 协议族乃至所有网络通信协议中最重要的一个了；「TCP/IP 协议族」直接写了 TCP 的名字，还排在 IP 的前面<del>同为传输层的 UDP 看到都羡慕死了</del>。这种重要性当然是有根据的，传输层的 TCP 起到了相当大的作用；这与 TCP 的设计是分不开的。</p>
+<p>而 TCP 的设计需要解决的就是<strong>在不可靠的网络层协议的基础上，提供可靠的数据传输服务。</strong>所谓可靠，指的是：</p>
+<ol>
+<li>克服网络层的分组丢失，保证所有数据都能够无错地交付；</li>
+<li>数据应当交付给目的地址中的正确的应用，即对于<strong>端到端（end-to-end）</strong>的保证；</li>
+<li><strong>交付的数据不能出现顺序问题。</strong></li>
+</ol>
+<p>第二条所有传输层协议都做到了：解决方法就是为每个运行中的网络应用分配一个编号；不仅要在报头中包含目标地址（即网络层的 IP 地址），还应该在首部中包含目标应用的编号。这个编号就是端口（port）。端口号用 4 字节（16 位）来表示，可能的端口号共有 65536 个<sup><a href="#fn_1" id="reffn_1">1</a></sup>。</p>
+<p>而对于丢包的问题，很容易想到使用 ARQ 协议（<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/%E8%87%AA%E5%8A%A8%E9%87%8D%E4%BC%A0%E8%AF%B7%E6%B1%82">自动重传请求</a>，<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Automatic_repeat_request">Automatic Repeat-reQuest</a>） 的<strong>超时</strong>和<strong>确认</strong>的机制来解决：在每发出一个数据分段后，对它启动一个计时器开始计时；对方收到分段时回复一个包含确认信息的分段，若过去了一段给定时间后没有收到对方的确认信息，就默认这个分段已经丢失，进行重传。只有当收到了对方对所有的分段的确认后，数据才全部传输完毕，此时可以保证对方收到了所有数据。保证分段内的数据无错，可以引入类似校验和（checksum）的机制进行检错，若检出分段中数据有错则丢弃并请求重传。</p>
+<p>真正难的是第三个问题。在数据传输的过程中，因为网络层路由的原因，并不一定是先发送的数据先到达；数据的接收方需要将数据的顺序还原。TCP 的不少设计都围绕着对顺序的保证而展开。</p>
+<blockquote id="fn_1">
+<sup>1</sup>.  实际上，和全 0 的 IP 地址被保留一样，端口 0 是保留端口，所以可用的端口号共有 65535 个。由于<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-hans/TCP/UDP%E7%AB%AF%E5%8F%A3%E5%88%97%E8%A1%A8">不少低端口都有常与之绑定的应用</a>，这些端口可能被占用，所以任意指定的端口号一般是高端口。<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<h2 id="序号的设计"><a href="#序号的设计" class="headerlink" title="序号的设计"></a>序号的设计</h2><p>一个很朴素的想法就是：给数据分段（在首部里）编上号，对方收到之后按照顺序排列即可。这就是回退 N 帧的 ARQ 和选择重传的 ARQ 的方法。为了在没有收到确认的时候连续发送帧，ARQ 协议为每个帧编上一个序号；而对方确认的时候，在确认帧中附上确认的帧的序号。如果某个帧被漏掉了，接收方也可以不确认之后的帧，而向发送方持续请求丢失的帧直到重传。</p>
+<p>TCP 所使用的编号和标准 ARQ 的对所有要发送的帧编号不同，是对所有要发送的字节进行编号。TCP 数据包的序号（sequence number，即 Seq）字段长 8 字节（32 位），标识着当前分段的第一个字节的序号。这种方式比起对数据分段编号，可以更准确地通过编号判断已经传输的数据量，方便对数据的传输量进行更精确的控制。</p>
+<p>接收方的确认号（acknowledge number，即 Ack）与 Seq 字段一样长，代表接收方所期望收到的字节的序号。如果发送方发送了一个 Seq 为 <script type="math/tex">n</script>，长度为 <script type="math/tex">k</script> 的分段，那么发送方发送的就是需要传输的第 <script type="math/tex">n</script> 到第 <script type="math/tex">n+k</script> 个字节；接收方接收到这个分段后，回复的 Ack 为 <script type="math/tex">n+k+1</script>，代表接收方已经收到了前 <script type="math/tex">n+k</script> 个字节，期望接收第 <script type="math/tex">n+k+1</script> 个字节。</p>
+<p>然而，如果考虑到实际应用的情形，那么每次从 1 开始的序号会造成潜在的问题。考虑这样的一种情形：某地址的某一应用向另一地址的另一应用发送一些数据。在这个过程中，序号为 <script type="math/tex">t</script> 的分段在传输时「丢失了」——实际情况是，这个分段没有在规定时间内到达目的地。于是发送方进行了重传，这次传输顺利结束了。</p>
+<p>不久后，同样的发送方又需要向接收方传送数据。如果发送方恰好在 <script type="math/tex">t-1</script> 和 <script type="math/tex">t</script> 字节处分割数据<sup><a href="#fn_2" id="reffn_2">2</a></sup>，接收方收到了前 <script type="math/tex">t-1</script> 个字节后，在网络中迷路的、上一次发送的序号为 <script type="math/tex">t</script> 的包正好在此时到达了接收方；由于接收方正在等候接收序号为 <script type="math/tex">t</script> 的分段，这个分段就会被接收——而它所包含的并不是这次要发送的数据，这样，传输就出现了错误。同样的，恶意方也可以用这种方式伪造数据分段对传输的数据进行攻击。</p>
+<p>解决的方法就是为每一次的连接随机选取起始序号，而非每次都从 1 开始。当然，选取的序号需要在传输开始时通知接收方，让接收方从这个序号开始接收数据。在发送方向接收方开始发送数据之前，发送方会发送一个分段，这个分段包含「同步序号（SYN）」的请求，同时 Seq 字段发送方的初始序号；这个分段是每次需要发送数据时发送的第一个分段，所以它的 Ack 字段是没有意义的。接收方收到后，会将这个初始序号看做 0，并回复 Ack = 1 的分段给发送方，代表准备接收 1 号字节；从这个分段开始，Ack 字段就是有效的，之后的所有分段会包含「确认号有效（ACK）」的标识。从交换序号开始，双方开始建立起一个 <strong>TCP 连接</strong>。</p>
+<p>TCP 连接是全双工的，也就是「接收方」——连接的接受方也可以作为发送方，向连接的发起方发送数据；为此接收方也需要选定自己所发送的数据流的初始序号。这个序号会与上面的那个确认分段一起发给连接的发起方。发起方在收到这个分段后，也会回复一个确认分段，这个分段的 Ack 值就是接受方的 1 号序号，代表发起方准备接收接受方的 1 号字节。</p>
+<p>上述的三个分组就是大名鼎鼎的<strong>三次握手</strong>，其目的是<strong>交换初始序号</strong>。三次握手的步骤总结如下：</p>
+<ol>
+<li>发起方发送分段，标识为 SYN：Seq 字段为发起方的初始序号 <script type="math/tex">a</script>，Ack 字段无效；</li>
+<li>接受方回复分段，标识为 SYN, ACK：Seq 字段为接受方的初始序号 <script type="math/tex">b</script>，Ack字段为 <script type="math/tex">a+1</script>；</li>
+<li>发起方回复分段，标识为 ACK：Seq 字段为 <script type="math/tex">a+1</script>，Ack 字段为 <script type="math/tex">b+1</script>．</li>
+</ol>
+<blockquote id="fn_2">
+<sup>2</sup>. 这种情况比想象的要多，因为一次能发送的数据量受到物理网络的 MTU（最大传输单元，Maximum Transmission Unit）的影响。TCP 会依照 MTU 规定 MSS（最大分段大小，Maximum Segment Size）来节省 IP 分片的资源，MTU 的值在三次握手时一并交换。为了使数据占带宽比尽可能大，TCP 会一次发尽可能多以占满 MSS，这样每次发送的分段大小可能是相同的，也就会在不同数据流的同一位置分割开了。<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+<h2 id="连接的控制"><a href="#连接的控制" class="headerlink" title="连接的控制"></a>连接的控制</h2><p>之前说到了 TCP 为保证数据传输顺序，建立了一个连接；在数据传输完成之后，这个连接就需要被拆除。于是这就涉及到了对「数据传输完成」的判断问题：在一方传输完数据后不能确定另一方是否已经传输完毕。所以两边不可能同时拆除连接：一方传输完毕后，会发送「发送完毕（FIN）」分组，之后不再向另一方发送数据。另一方收到后需要回复一个 ACK；同时，在自己的数据发送和处理完毕后，也发送 FIN 分组。双方都收到 FIN 后连接才算拆除完毕。</p>
+<p>这就是不那么大名鼎鼎的<strong>四次挥手</strong>，拆除 TCP 连接的过程。假设在连接中起始序号为 <script type="math/tex">a</script> 的 A 方传输了 <script type="math/tex">n</script> 字节数据，起始序号为 <script type="math/tex">b</script> 的 B 方传输了 <script type="math/tex">m</script> 字节数据，A 方先发起拆除，那么流程如下：</p>
+<ol>
+<li>A 方发送分段，标识为 FIN, ACK：Seq 字段为 <script type="math/tex">a+n+1</script><sup><a href="#fn_3" id="reffn_3">3</a></sup>，Ack 字段未定；</li>
+<li>B 方回复分段，标识为 ACK：Seq 字段未定，Ack 字段为 <script type="math/tex">a+n+2</script>；</li>
+<li>B 方发送分段，标识为 FIN, ACK：Seq 字段为 <script type="math/tex">b+m+1</script>，Ack 字段为 <script type="math/tex">a+n+2</script>；</li>
+<li>A 方回复回复分段，标识为 ACK：Seq 字段为 <script type="math/tex">a+n+2</script>，Ack 字段为 <script type="math/tex">b+m+2</script>．</li>
+</ol>
+<p>分开拆除为双方处理数据留出了时间。在传输过程中，接收方处理数据也需要时间；为了防止接收方拥塞造成大量的丢包，发送方应按照接收方需要的速度进行发送，这就是 TCP 的<strong>拥塞控制</strong>。计量接收方的处理能力的方法也是 ARQ 协议中的老面孔——滑动窗口，但 TCP 中的滑动窗口就不是为了处理重复序号的问题了。接收方每次发送的 ACK 分组都会包含自己当前的接收窗口大小，即 Win 字段；发送方和接收方会共同维护接收方的接收窗口，若接收窗口为 0 ，发送方就会停止发送数据，只每隔一段时间向接收方确认 Win 值。在接收方处理完数据，窗口更新之后，也会向发送方重发一个 ACK，包含了更新后的 Win 值，提醒发送方恢复数据的发送。</p>
+<p>当然，发送方也会维护自己的发送窗口，目的是进行<strong>流量控制</strong>：发送方保证自己不一次向网络中注入太多流量，降低网络拥塞的可能性。发送窗口的大小等于拥塞窗口（congestion window，即cwnd），这个值是发送方对网络状态进行的判断。在连接建立初期，发送方通常会设置较小的cwnd，然后以分组的往返时间<sup><a href="#fn_4" id="reffn_4">4</a></sup>（Round Trip Time，即RTT）为间隔倍增，直到网络有拥塞的迹象后再减少cwnd的值，降低自己的发送速度。</p>
+<blockquote id="fn_3">
+<sup>3</sup>. 有时在 FIN 分组中发送方还会传输一些数据，这个分组会包含第三个标志 PSH，表示其中含有数据；这时的 Seq 就不一定是传输完毕后的 Seq 了。<a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_4">
+<sup>4</sup>. 为了测量 RTT，TCP 常常会在首部附加一个时间戳（即 TSval 和 TSecr 项），并用三次握手时两次发送的时间戳差距来计算 RTT 的初始值，这个值叫做 iRTT．TCP 的超时定时器就是基于 RTT 设置的。<a href="#reffn_4" title="Jump back to footnote [4] in the text."> &#8617;</a>
+</blockquote>
+<h2 id="TCP-首部"><a href="#TCP-首部" class="headerlink" title="TCP 首部"></a>TCP 首部</h2><p>作为总结，TCP 首部的内容如下：</p>
+<ul>
+<li>0 - 15：源端口号（Src Port）4 字节，16 位，发送方应用的端口号；</li>
+<li>16 - 31：目的端口号（Dst Port）4 字节，16 位，接收方应用的端口号；</li>
+<li>32 - 63：序号（Seq）8 字节，32 位，本分组的第一个字节的序号；</li>
+<li>64 - 127：确认号（Ack）8 字节，32 位，期望收到的分组的序号；</li>
+<li>128 - 131：首部长度（Header Length）1字节，4位；</li>
+<li>132 - 137：保留；</li>
+<li>138：「紧急指针有效」标志位（URG）<sup><a href="#fn_5" id="reffn_5">5</a></sup>；</li>
+<li>139：「确认号有效」标志位（ACK）；</li>
+<li>140：「包含数据」标志位（PSH）；</li>
+<li>141：「重置连接」标志位（RST）<sup><a href="#fn_6" id="reffn_6">6</a></sup>；</li>
+<li>142：「同步序号」标志位（SYN）；</li>
+<li>143：「发送完毕」标志位（FIN）；</li>
+<li>144 - 159：窗口大小（Win）4 字节，16 位，当前可用的接收窗口大小；</li>
+<li>160 - 175：校验和（checksum）4 字节，16 位，用于检错；</li>
+<li>176 - 191：紧急指针（urgent pointer）；</li>
+<li>192 - ：可选的首部内容，包括 MSS、TSval 和 TSecr 等。</li>
+</ul>
+<p>可选首部内容的总长最长为 40 字节，之后就是传输的数据内容了。首部的值所引出的这些机制，共同构成了 TCP 的设计<sup><a href="#fn_7" id="reffn_7">7</a></sup>。</p>
+<blockquote id="fn_5">
+<sup>5</sup>. 紧急指针在目前并不常用，它是早期被设计用于在连接中紧急交付数据用的：若某包设置了 URG，则紧急指针指向的那个字节的数据应优先被交付给应用层。然而紧急数据并没有被开辟专门的通道，而是和常规数据一起传送，所以只能起到警告作用。目前建立一条新连接来交付重要数据的成本并不高，所以新程序并不使用紧急指针。<a href="#reffn_5" title="Jump back to footnote [5] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_6">
+<sup>6</sup>. 这个标志位用于立即断开连接。有趣的是，它也可以<a target="_blank" rel="noopener" href="https://robertheaton.com/2020/04/27/how-does-a-tcp-reset-attack-work/">用于攻击</a>。<a href="#reffn_6" title="Jump back to footnote [6] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_7">
+<sup>7</sup>. 还有一些设计并没有体现在首部中，例如重传的机制、流量控制的细节、双方的状态机等等，在这里不表。<a href="#reffn_7" title="Jump back to footnote [7] in the text."> &#8617;</a>
+</blockquote>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/darkjax.css"></div></div><div class="post-main misc"><div class="prev-nav"><div class="nav-left"><</div><div class="link-left"> <a href="/talking-about-chase-algorithm">谈无损连接分解判别算法</a></div></div><div class="next-nav"><link-right><a href="/robert-paul-wolff-lecture-on-freud">R. P. Wolff 关于弗洛伊德的讲课</a></link-right><div class="nav-right">></div></div><script src="/js/highlight.pack.js"></script>
+<script src="/js/highlight.line-number.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script></div></article><footer class="footer wrapper"><div class="social"><a href="mailto:mail@nothingto.me" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="/OpenPGP_0x5574255F8C7E37FC.asc" target="_blank"><i class="fa fa-key"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer-content">(ɔ) 2024 <a href="/" rel="nofollow">Nothing</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/hexo-theme-noise">noise</a>.</div></footer><link rel="stylesheet" type="text/css" href="/css/remix.css"><link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></body></html>

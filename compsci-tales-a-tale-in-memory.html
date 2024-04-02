@@ -1,0 +1,83 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="一个关于递归和函数调用是什么的小故事。这个故事属于&lt;a href=&quot;/tags/CompSciTales/&quot;&gt;计算机科学小故事&lt;/a&gt;系列。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>记忆中的故事</title><link rel="Shortcut Icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"Nothingto-Me",utcoffset:"8"}))};sessionStorage.setItem("_swa","1");</script><meta name="generator" content="Hexo 5.4.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Artwork/" rel="tag">#Artwork</a> <a class="post-tag-none-link" href="/tags/CompSciTales/" rel="tag">#CompSciTales</a></div><div class="post-time">2021-10-04</div></div></div><div class="container post-header"><h1>记忆中的故事</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BF%86%E4%B8%AD%E7%9A%84%E6%95%85%E4%BA%8B"><span class="toc-number">1.</span> <span class="toc-text">记忆中的故事</span></a></li></ol></details></div><div class="container post-content"><p>一个关于递归和函数调用是什么的小故事。这个故事属于<a href="/tags/CompSciTales/">计算机科学小故事</a>系列。</p>
+<h2 id="记忆中的故事"><a href="#记忆中的故事" class="headerlink" title="记忆中的故事"></a>记忆中的故事</h2><p>艾因和计算机系的学长佐维在公园散步，艾因对佐维说：「等我上了大学，我也要去学计算机，就像我爸爸一样。」</p>
+<p>佐维说：「你爸爸是学计算机的？」</p>
+<p>「不，是他中学的时候也想学计算机。」</p>
+<p>「那很有意思，」佐维说，「不过我这里有一个忠告，是我的老师给我的。」</p>
+<p>「什么忠告？」艾因问。</p>
+<p>「老师说，『要小心递归。』」佐维说。</p>
+<p>「什么是递归？」</p>
+<p>佐维挠了挠头：「不知道，我才刚上大学一个月，还没学到呢。我去打个电话问问老师。」</p>
+<p>佐维拨通了给老师的电话。</p>
+<p>「老师怎么说的？」艾因问。</p>
+<p>佐维说：「老师说他前两天在外面玩的时候出了车祸，现在头脑一片空白。他打算给他的老师打电话问问这个，你等一下。」</p>
+<p>「好的。」艾因说。于是他跑到公园的别处去散步。</p>
+<p>公园里有几棵橘子树，艾因看到有个小孩在树底下捡橘子。于是艾因问：「你在这捡橘子干什么啊？」</p>
+<p>小孩说：「我要研究这些橘子。等我以后当了物理学家，发明了穿越时空的技术以后，我要找一个橘子，让它能够穿越回五秒钟之前自己所在的地方。」</p>
+<p>「那有什么用？」艾因问。</p>
+<p>小孩说：「这样，五秒钟之前那个地方就会有两个橘子了，然后两个橘子可以一起穿越回五秒钟之前，就有四个橘子。这样下去，这个地方会出现无限多的橘子！」</p>
+<p>艾因说：「这是不可能的，因为时间旅行需要无限多的能量，会把无限多的橘子用掉的，最后你还是没有橘子。」</p>
+<p>小孩说：「这样吗，我很难过。我只是想要无限多的橘子，在哪里可以找到呢？」</p>
+<p>这时候，收橘子的园艺工走过来说：「已经有无限多的橘子了。橘子里面有种子，种子里可以长出橘子树，橘子树能结出橘子。只要地球还在自转和公转，日常的生活和我的工作继续下去，就有无限多的橘子。」</p>
+<p>「哇哦，」小孩说，「我也要当园艺工。」</p>
+<p>「有意思，」艾因捡起一个橘子，「嘿，你有种子吗？」</p>
+<p>「滚吧。」橘子说，然后滴溜溜地转着，顺着草坪滚走了。</p>
+<p>园艺工对艾因说：「你在这里寻找什么？」</p>
+<p>艾因说：「我想知道什么是递归。」</p>
+<p>园艺工说：「这是个高深的问题，我认识一个人可以解答它。」</p>
+<p>艾因说：「这是个高深的人吗？」</p>
+<p>「当然是了。」园艺工说，「他最擅长这些，他造的机器人都会造机器人了。你坐地铁到艾丽丝大道就能找到他。」</p>
+<p>艾因沿着地铁线路到了园艺工说的地址，找到了张小过。张小过正靠在椅子上喝茶。</p>
+<p>「您好，」艾因说，「我想……」</p>
+<p>「我是虚构的。」张小过说，「而你，你是我虚构的。和虚构的人说话是浪费时间。」</p>
+<p>艾因说：「我想知道什么是递归。」</p>
+<p>张小过说：「为什么我要回答一个虚构的人的问题？你自己去虚构一个人，问他递归是什么吧。」</p>
+<p>艾因说：「如果我自己都不知道递归是什么，我虚构的人怎么知道递归是什么？」</p>
+<p>张小过说：「没准哪天他就从实践中找到答案了。我不想说话，说话太浪费时间了。再过段时间，世界末日都要来了，大概还有三……」</p>
+<p>「三什么？」艾因问，「三天？」</p>
+<p>「三、二、一。」</p>
+<p>艾因震惊地望向窗外，发现天空被橘子汁染成了橘子色。远处有什么东西在高高地隆起：那是一座橘子山。</p>
+<p>「这根本没有道理！」艾因大喊。</p>
+<p>「道理就是你浪费了太多时间。」张小过喝了口茶，「还有空间，这些橘子浪费了太多空间。如果要我给你一个忠告，那就是：趁早改用迭代吧。」</p>
+<p>艾因冲向屋外，路上有很多橘子人在到处乱跑。一辆运橘子的卡车横冲直撞，差点撞上艾因；但是它轧到了橘子皮，滑了一跤。橘子滚了一地，长出了新的橘子人。司机跳下车来，对天上橘红色的太阳大喊：「嘿！那是香蕉的哏！」新长出的橘子人向他喷橘子汁，把他的衣服变成橘子色。</p>
+<p>「佐维学长！」艾因大喊，周围的橘子人冲他扔橘子瓣儿。艾因躲过橘子瓣，跑进一条小巷。「我要找到佐维学长。」艾因说，拿出手机给佐维发消息。</p>
+<p>「停下。」艾因旁边的人说，「不要大喊大叫，不要发消息。消息会被橘子人看见的。」</p>
+<p>「为什么？」艾因问。</p>
+<p>「因为植物会吸收电磁辐射。」那人说。</p>
+<p>「你拉倒吧，」艾因说，「我没上大学都知道这是假的。你上过大学没有啊？」</p>
+<p>「我上过，」那人有点生气，「我学了一个月的密码学呢。你尽管去教育局查我德莱的学籍。」</p>
+<p>「已经没有教育局啦，」艾因说，「你让我不要发消息，那我怎么才能联系上佐维学长？」</p>
+<p>德莱说：「我在短暂的密码学课程中学到了一件事：一次性密码本（One Time Pad）是完美安全的。」</p>
+<p>「长话短说。」艾因说。</p>
+<p>「嘿，那是压缩。千万不要加密后压缩。」德莱说，「总之就是：只要你用一个和你要加密的信息一样长的密钥来加密它，并且这个密钥只使用这一次，那就没人能破解你的信息了。」</p>
+<p>「酷，」艾因说，「那我加密以后，怎么把这个密钥告诉佐维学长？」</p>
+<p>德莱说：「你发给他呗。」</p>
+<p>「但是橘子人会看到，他们知道密钥不是就能破解了？」</p>
+<p>「那就把密钥加密之后再发给他。」德莱说，「记得用一次性密码本来加密密钥，那样橘子人就没法破解了。」</p>
+<p>「太麻烦啦，」艾因说，「你帮我搞定好了，总之我要联系佐维学长。」</p>
+<p>「给我十分钟。」德莱说。</p>
+<p>十分钟后，艾因冲进公园，看到佐维站在公园长椅上躲过那些乱滚的橘子，同时还在听电话。</p>
+<p>「老师怎么说？」艾因跳上长椅问。</p>
+<p>佐维挂断了电话：「老师的老师的老师的老师告诉我一件事，他说他那个时候计算机还没被发明出来，计算机系的学生的所有的计算机知识都来自一台全知机器，我们只要找到那台机器就可以知道我们想问的问题了。」</p>
+<p>艾因说：「但是我们怎么找到这台机器呢？」</p>
+<p>佐维说：「既然是全知机器，自然会知道应该怎么找到它。只要按下它上面的一个按钮，我们就可以直接找到这台机器了。」</p>
+<p>艾因说：「是这个按钮吗？」说着按了一下按钮。</p>
+<p>佐维说：「没错，现在我们应该找到机器了。」</p>
+<p>机器说：「嘿，你们好。我叫凯涅。」</p>
+<p>「没人管你叫啥啦，」艾因说，「告诉我们这地方发生了什么？」</p>
+<p>机器说：「冷静一下，我这里什么都没有发生。佐维，如果有非计算机系的学生问你现实中为什么没有递归，你怎么回答他？」</p>
+<p>佐维挠了挠头：「因为递归不存在，一切都是虚构的？」</p>
+<p>机器说：「正是。根本就不是程序自己在调用自己，只是CPU在不停的调用同一个函数而已，程序在硬盘上好好的待着呢。只有内存出了问题。」</p>
+<p>佐维说：「内存出了问题？但是递归为什么会让内存出问题？」</p>
+<p>机器说：「我是被一台万能机器造出来的，它能解决内存的问题，但是你们需要有祭品才能召唤出它来。还需要有规律的信号——这个我可以帮忙。」</p>
+<p>「祭品不是问题，」艾因说，「我们现在橘子多得是。」</p>
+<p>他们把橘子摆成二叉树的形状，机器在一旁有规律地拍打着自己的磁头。二叉树的树根突然发出光芒，然后逐渐变成黑色，展开了一个时空门。</p>
+<p>「安静，」机器大声振动着，「它来了。」</p>
+<p>艾因和佐维屏住气，盯着那个时空门。时空门中传来了咔咔的声音，缓慢地吐出了一条纸带。</p>
+<p>纸带上写着：「猜猜是谁忘记写终止条件啦？」</p>
+<p>「噢，干。」佐维拍了拍脑袋，「我总是粗心。谢谢你，计算机。」</p>
+<p>艾因盯着佐维和纸带。「我会记住这件事的。」</p>
+<p>「我也会的。」佐维说，「要是我活过了末日，就把这个故事发表出来，警告自己和其他人写代码的时候要细心，少出几个 bug．」</p>
+</div></div><div class="post-main misc"><div class="prev-nav"><div class="nav-left"><</div><div class="link-left"> <a href="/compsci-tales-now-you-have-two-problems">现在你有两个问题了</a></div></div><div class="next-nav"><link-right><a href="/compsci-tales-transmission">传输</a></link-right><div class="nav-right">></div></div><script src="/js/highlight.pack.js"></script>
+<script src="/js/highlight.line-number.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script></div></article><footer class="footer wrapper"><div class="social"><a href="mailto:mail@nothingto.me" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="/OpenPGP_0x5574255F8C7E37FC.asc" target="_blank"><i class="fa fa-key"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer-content">(ɔ) 2024 <a href="/" rel="nofollow">Nothing</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/hexo-theme-noise">noise</a>.</div></footer><link rel="stylesheet" type="text/css" href="/css/remix.css"><link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></body></html>

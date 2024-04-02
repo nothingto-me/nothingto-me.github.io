@@ -1,0 +1,195 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="人生就是总有一天你会去写自己最讨厌的算法题，但是 &lt;code&gt;unordered_map&lt;/code&gt; 确实好使。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>unordered_map 的三个小例子</title><link rel="Shortcut Icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"Nothingto-Me",utcoffset:"8"}))};sessionStorage.setItem("_swa","1");</script><meta name="generator" content="Hexo 5.4.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Algorithm/" rel="tag">#Algorithm</a> <a class="post-tag-none-link" href="/tags/C/" rel="tag">#C++</a> <a class="post-tag-none-link" href="/tags/ProblemSolving/" rel="tag">#ProblemSolving</a></div><div class="post-time">2023-03-13</div></div></div><div class="container post-header"><h1>unordered_map 的三个小例子</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%88%B0%E9%87%8D%E5%A4%8D%E5%87%BA%E7%8E%B0%E7%9A%84%E5%AD%97%E7%AC%A6"><span class="toc-number">1.</span> <span class="toc-text">找到重复出现的字符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94"><span class="toc-number">1.1.</span> <span class="toc-text">解答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%9A%E4%B8%A4%E7%A7%8D%E4%B8%8D%E5%90%8C%E5%AD%97%E7%AC%A6%E6%9E%84%E6%88%90%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E5%BA%8F%E5%88%97"><span class="toc-number">2.</span> <span class="toc-text">最多两种不同字符构成的最长子序列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94-1"><span class="toc-number">2.1.</span> <span class="toc-text">解答</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8-2-%E7%9A%84%E5%B9%82%E7%BB%84%E6%88%90%E6%95%B0%E5%AD%97"><span class="toc-number">3.</span> <span class="toc-text">用 2 的幂组成数字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94-2"><span class="toc-number">3.1.</span> <span class="toc-text">解答</span></a></li></ol></li></ol></details></div><div class="container post-content"><p>人生就是总有一天你会去写自己最讨厌的算法题，但是 <code>unordered_map</code> 确实好使。</p>
+<p><code>std::unordered_map</code> 使用哈希和桶实现，不过在使用中并不需要完全理解它是如何实现的。把它理解成键值对的集合，在知道键之后可以快速查询到值，就不用自己慢慢找了。</p>
+<hr>
+<h2 id="找到重复出现的字符"><a href="#找到重复出现的字符" class="headerlink" title="找到重复出现的字符"></a>找到重复出现的字符</h2><p>给出一个字符串，找出反复出现的字符并输出它们的所在位置。</p>
+<p><strong>输入</strong></p>
+<pre><code class="lang-c++">abcaaAB12ab12
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="lang-c++">a,1; a,4; a,5; a,10; b,2; b,11; 1,8; 1,12; 2,9; 2,13.
+</code></pre>
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><p>有了 <code>unordered_map</code>，我们可以只遍历一次字符串，在遍历时记录下已经出现的字符。于是，发现遍历到的字符已经被记录下来时，说明这个字符是反复出现的。</p>
+<p>不过，反复出现的字符的第一次出现（例如上面的 <code>a,1</code> 和 <code>b,2</code>）也需要输出。可以在它们第一次重复（即第二次出现）时将其输出，于是需要标记记录第一次出现的位置是否已经被输出。</p>
+<p>题目没有要求输出顺序，但若有则不能立刻输出，而是应该在遍历时将结果保存下来，最后按照要求的输出顺序输出。</p>
+<pre><code class="lang-c++">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_map&gt;
+
+using namespace std;
+
+int main () &#123;
+    string s;
+    cin &gt;&gt; s;
+    size_t n = s.length();
+
+    // record first occur place
+    unordered_map&lt;char, size_t&gt; firstplace;
+    // flags for whether first occur has outputed
+    vector&lt;bool&gt; firstout(n, false);
+    bool flag = false;
+    for (size_t i = 0; i &lt; n; i++) &#123;
+        if (firstplace.find(s[i]) != firstplace.end()) &#123;
+            // current char is duplicate
+            auto firstindex = firstplace[s[i]];
+            if (!firstout[firstindex]) &#123;
+                // is first duplicate (second occur)
+                // output first occur
+                if (flag) &#123;
+                    cout &lt;&lt; &quot;; &quot;;
+                &#125; else &#123;
+                    flag = true;
+                &#125;
+                cout &lt;&lt; s[i] &lt;&lt; &#39;,&#39; &lt;&lt; firstindex + 1;
+                firstout[firstindex] = true;
+            &#125;
+            // output this occur
+            cout &lt;&lt; &quot;; &quot; &lt;&lt; s[i] &lt;&lt; &#39;,&#39; &lt;&lt; i + 1;
+        &#125; else &#123;
+            // is not duplicate (first occur)
+            firstplace[s[i]] = i;
+        &#125;
+    &#125;
+    if (flag) &#123;
+        cout &lt;&lt; &#39;.&#39; &lt;&lt; endl;
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="最多两种不同字符构成的最长子序列"><a href="#最多两种不同字符构成的最长子序列" class="headerlink" title="最多两种不同字符构成的最长子序列"></a>最多两种不同字符构成的最长子序列</h2><p>给出一个字符串，找出由最多两种不同字符构成的最长子序列。</p>
+<p><strong>输入</strong></p>
+<pre><code class="lang-c++">eeaeaaguhaiouuuuuoououdfvbiu
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="lang-c++">11 ouuuuuoouou
+</code></pre>
+<h3 id="解答-1"><a href="#解答-1" class="headerlink" title="解答"></a>解答</h3><p>题目很长也很绕口，不过本质是找出一个「符合特定条件」的子序列。</p>
+<p>和许多只包含正数的子序列问题一样，可以使用双指针法。使用两个指针 <code>i</code> 和 <code>j</code>，作为候选子序列的开头和末尾。指针 <code>j</code> 只逐步向前，遍历一次给定的字符串；而指针 <code>i</code> 只在指针 <code>j</code> 更新后候选子序列不满足条件后才更新，前移最少的步数使其重新满足条件。这样，保证候选子序列始终是以 <code>j</code> 结尾的子序列中，满足条件且最长的那一个。将候选子序列与已知最佳相比较，得出新的最佳答案。</p>
+<p>例如，本题的条件是候选子序列只包含两种不同的字符串。若 <code>j</code> 的更新使第三种字符出现在了候选字符串里，就移动 <code>i</code> 排除一种字符。例如本题的例子，当移动 <code>j</code> 使得候选字符串从 <code>eeaeaa</code> 变为 <code>eeaeaag</code> 时，移动 <code>i</code> 排除字符 <code>e</code>，使候选变为 <code>aag</code>．显然，<code>i</code> 要移动到两种字符在候选中最后一次出现的这两个位置中，较前的那一个。</p>
+<p>如何知道这个位置在哪？当然是使用 <code>unordered_map</code> 记录了。</p>
+<pre><code class="lang-c++">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;unordered_map&gt;
+
+using namespace std;
+
+int main () &#123;
+    string s;
+    cin &gt;&gt; s;
+
+    size_t i = 0, j;
+    int best = 0;
+    string bs = &quot;&quot;;
+    // used to record last occur of each char in substr
+    unordered_map&lt;char, size_t&gt; rec;
+    for (j = 0; j &lt; s.size(); j++) &#123;
+        if (rec.size() == 2 &amp;&amp; rec.find(s[j]) == rec.end()) &#123;
+            // substr is saturated
+            // potential maximum
+            int len = j - i;
+            bs = len &gt; best ? s.substr(i, len) : bs;
+            best = max(len, best);
+            // update start pointer
+            // find the last place of the earlier char in substr
+            char c;
+            size_t pos = j;
+            for (auto it = rec.begin(); it != rec.end(); it++) &#123;
+                if (pos &gt; it -&gt; second) &#123;
+                    c = it -&gt; first;
+                    pos = it -&gt; second;
+                &#125;
+            &#125;
+            // delete this char
+            rec.erase(c);
+            // new start pointer
+            i = pos + 1;
+        &#125;
+        // continue
+        // update new record
+        rec[s[j]] = j;
+    &#125;
+    int len = j - i;
+    bs = len &gt; best ? s.substr(i, len) : bs;
+    best = max(len, best);
+    cout &lt;&lt; best &lt;&lt; &#39; &#39; &lt;&lt; bs &lt;&lt; endl;
+    return 0;
+&#125;
+</code></pre>
+<p>这题中的 <code>unordered_map</code> 中虽然最多只包含两个元素，但具有可扩展性。改动判断中的 <code>rec.size() == 2</code>，就可用于解决「最多 n 种不同字符构成的最长子序列」问题。</p>
+<h2 id="用-2-的幂组成数字"><a href="#用-2-的幂组成数字" class="headerlink" title="用 2 的幂组成数字"></a>用 2 的幂组成数字</h2><p>每个正数都可以表示为 2 的幂的和，例如 <script type="math/tex">137=2^7+2^3+2^0</script>．而 <script type="math/tex">7=2^2+2+2^0</script>，并且 <script type="math/tex">3=2+2^0</script>，于是所有的数都可以使用只有 2 和 0 构成的指数式来表示。为了方便阅读输出，用 <code>a(b)</code> 表示 <script type="math/tex">a^b</script>．</p>
+<p><strong>输入</strong></p>
+<pre><code class="lang-c++">137
+</code></pre>
+<p><strong>输出</strong></p>
+<pre><code class="lang-c++">2(2(2)+2+2(0))+2(2+2(0))+2(0)
+</code></pre>
+<h3 id="解答-2"><a href="#解答-2" class="headerlink" title="解答"></a>解答</h3><p>用递归和分治的方法解决此题。让函数在得到 137 时，先得出 2 的幂的和的表示法中的指数，然后再对指数递归调用这个函数。不过如果指数是 1 时，输出的不是 <code>2(2(0))</code> 而是 <code>2</code>，此时就不用递归直接输出就可以了。</p>
+<p>显然，递归会使函数的参数越来越小，于是题目中有许多重复计算的部分。如果能用 <code>unordered_map</code> 把之前计算的表示式存起来，就不用反复计算，于是可以省很多时间，<del>这就是动态规划</del><sup><a href="#fn_#" id="reffn_#">#</a></sup>。</p>
+<pre><code class="lang-c++">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;unordered_map&gt;
+
+using namespace std;
+
+string getRep (long long n, unordered_map&lt;long long, string&gt; &amp;rep) &#123;
+    auto search = rep.find(n);
+    // if the representation is already calculated, return it
+    if (search != rep.end()) 
+        return rep[n];
+    // all exponents
+    vector&lt;long long&gt; exp;
+    int t = n;
+    // break n into sum of power of 2
+    while (t &gt; 0) &#123;
+        long long i = 1, p;
+        for (p = 0; i &lt;= t; p++) &#123;
+            i *= 2;
+        &#125;
+        p--;
+        // record all exponents
+        exp.push_back(p);
+        t -= i / 2;
+    &#125;
+    string r = &quot;&quot;;
+    for (auto it = exp.begin(); it != exp.end(); it++) &#123;
+        if (it != exp.begin())
+            r += &quot;+&quot;;
+        if ((*it) == 1) &#123;
+            // if the exponent is 1, no need to write it down
+            r += &quot;2&quot;;
+            continue;
+        &#125;
+        r += &quot;2(&quot;;
+        // recurse!
+        r += getRep(*it, rep);
+        r += &quot;)&quot;;
+    &#125;
+    rep[n] = r;
+    return r;
+&#125;
+
+int main () &#123;
+    // store already solved representation
+    unordered_map&lt;long long, string&gt; rep;
+    rep[0] = &quot;0&quot;;
+    rep[2] = &quot;2&quot;;
+
+    long long n;
+    cin &gt;&gt; n;
+    cout &lt;&lt; getRep(n, rep) &lt;&lt; endl;
+
+    return 0;
+&#125;
+</code></pre>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/darkjax.css">
+
+<blockquote id="fn_#">
+<sup>#</sup>. 其实并不完全是。记录下已经解决的子问题是 memoization（没有 r），而动态规划则是 deliberately memoize．<a href="#reffn_#" title="Jump back to footnote [#] in the text."> &#8617;</a>
+</blockquote>
+</div></div><div class="post-main misc"><div class="prev-nav"><div class="nav-left"><</div><div class="link-left"> <a href="/asp-for-planning-but-simplified">用 ASP 编码规划，但是化简版</a></div></div><div class="next-nav"><link-right><a href="/when-i-see-a-thing">当我看到一个东西</a></link-right><div class="nav-right">></div></div><script src="/js/highlight.pack.js"></script>
+<script src="/js/highlight.line-number.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script></div></article><footer class="footer wrapper"><div class="social"><a href="mailto:mail@nothingto.me" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="/OpenPGP_0x5574255F8C7E37FC.asc" target="_blank"><i class="fa fa-key"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer-content">(ɔ) 2024 <a href="/" rel="nofollow">Nothing</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/hexo-theme-noise">noise</a>.</div></footer><link rel="stylesheet" type="text/css" href="/css/remix.css"><link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></body></html>

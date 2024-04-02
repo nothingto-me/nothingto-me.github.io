@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="&lt;a href=&quot;https://en.wikipedia.org/wiki/Qubes_OS&quot;&gt;Qubes OS&lt;/a&gt; 是一个通过隔离（isolation）加强安全的&lt;del&gt;虚拟机集群&lt;/del&gt;桌面操作系统。本文将通过复读 &lt;a href=&quot;https://www.qubes-os.org/doc/&quot;&gt;Qubes OS 官方文档&lt;/a&gt;的方式教你安装这个操作系统并为其部署代理（作为 Tor 的前置代理）。当然，本文不能解决你在安装过程中遇到的大部分问题，如果你遇到了我也没遇到过的问题请参考官网的&lt;a href=&quot;https://www.qubes-os.org/doc/#troubleshooting&quot;&gt;故障排除指南&lt;/a&gt;或在相关社区中进行提问。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>Qubes OS 安装与代理部署</title><link rel="Shortcut Icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"Nothingto-Me",utcoffset:"8"}))};sessionStorage.setItem("_swa","1");</script><meta name="generator" content="Hexo 5.4.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/CyberSecurity/" rel="tag">#CyberSecurity</a> <a class="post-tag-none-link" href="/tags/Linux/" rel="tag">#Linux</a> <a class="post-tag-none-link" href="/tags/Tutorial/" rel="tag">#Tutorial</a></div><div class="post-time">2021-10-17</div></div></div><div class="container post-header"><h1>Qubes OS 安装与代理部署</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Qubes-OS-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.</span> <span class="toc-text">Qubes OS 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">系统安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%90%86%E9%83%A8%E7%BD%B2"><span class="toc-number">3.</span> <span class="toc-text">代理部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA-sys-proxy"><span class="toc-number">3.1.</span> <span class="toc-text">创建 sys-proxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8-sys-proxy-%E4%B8%AD%E5%AE%89%E8%A3%85%E4%BB%A3%E7%90%86"><span class="toc-number">3.2.</span> <span class="toc-text">在 sys-proxy 中安装代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E6%94%BE%E4%BB%A3%E7%90%86%E7%BB%99%E5%85%B6%E4%BB%96-qube"><span class="toc-number">3.3.</span> <span class="toc-text">开放代理给其他 qube</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol></details></div><div class="container post-content"><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Qubes_OS">Qubes OS</a> 是一个通过隔离（isolation）加强安全的<del>虚拟机集群</del>桌面操作系统。本文将通过复读 <a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/">Qubes OS 官方文档</a>的方式教你安装这个操作系统并为其部署代理（作为 Tor 的前置代理）。当然，本文不能解决你在安装过程中遇到的大部分问题，如果你遇到了我也没遇到过的问题请参考官网的<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/#troubleshooting">故障排除指南</a>或在相关社区中进行提问。</p>
+<p>你需要准备：</p>
+<ul>
+<li>合适的配置（参考<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/system-requirements/">这里</a>，尤其是 CPU 对虚拟化的要求）；</li>
+<li>空闲的存储设备（若是实验目的，最好使用外置 SSD 硬盘或高性能 U 盘）；</li>
+<li>你喜欢的代理客户端（支持 HTTP 代理或 Socks5 代理，能在 Fedora 或 Debian 上运行）；</li>
+<li>对 Linux 的一点儿经验或知识。（一点儿！）</li>
+</ul>
+<h2 id="Qubes-OS-简介"><a href="#Qubes-OS-简介" class="headerlink" title="Qubes OS 简介"></a>Qubes OS 简介</h2><p>Qubes OS 基于 <a target="_blank" rel="noopener" href="https://wiki.xen.org/wiki/Xen_Project_Software_Overview">Xen Hypervisor</a>，这是一个裸机虚拟化管程（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hypervisor">bare-metal hypervisor</a>），即直接运行在硬件上的虚拟化管程。在这个虚拟层之上运行着各种虚拟机，称为 qubes．Qubes OS 将不同的应用运行在不同的 qube 里，这样不仅可以隔离各个应用使其无法互相干扰或读取系统数据以保护隐私，也能防止恶意软件侵入系统以保持安全。</p>
+<p><img src="https://www.qubes-os.org/attachment/site/qubes-trust-level-architecture.png" alt=""></p>
+<h2 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h2><p>到<a target="_blank" rel="noopener" href="https://www.qubes-os.org/downloads/">这里</a>下载最新版的镜像。将镜像刻录到 U 盘上作为安装盘后，从安装盘启动安装程序。由于安全原因，Qubes OS 不支持作为双系统的其中一个来安装。</p>
+<p>在安装中遇到的问题可以参考<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/installation-troubleshooting/">安装问题排查</a>。如果遇到了安装界面卡住的问题，不要忘记禁用 nouveau 驱动（Fuck you NVIDIA）。</p>
+<blockquote>
+<p>注意：如果安装介质是通过 USB 连接的设备（通常用于测试），那么在安装后创建默认 qube 时，不要勾选「创建 sys-usb」，否则系统无法启动。原因是，如果存在 sys-usb 这个 qube，那么 USB 就会由这个 qube 来管理而与 dom0 隔离；但 dom0 和其他 qube 的启动依赖于 USB 中的内容，所以在创建完 sys-usb 之后，系统就完了。</p>
+</blockquote>
+<h2 id="代理部署"><a href="#代理部署" class="headerlink" title="代理部署"></a>代理部署</h2><p>系统启动后，创建的默认 qube 应该有 sys-net、sys-firewall 这些系统 VM，还有 personal、work 这些 AppVM 等。如果你在安装的过程中选择了安装 whonix，那么还会有 sys-whonix 和 anon-whonix．当然，由于显而易见的原因，whonix qube 和 AppVM 想要访问互联网还需要部署代理。</p>
+<p>这篇文章中的方法将会创建一个代理专用的 qube：sys-proxy，在此 qube 上部署代理客户端，并以共享给局域网的方式提供给 whonix 等其他 qube．目标的 Qubes 网络系统是这样的：</p>
+<p><img src="/qubes-os-with-proxy-install/qubes.dot.svg" alt=""> </p>
+<p>sys-proxy 和其他 AppVM 都使用 sys-firewall 作为默认网关；sys-firewall 作为一个路由器运行，将 AppVM 和 sys-proxy 的流量互相转发，以在它们之间建立起连接；最后由 sys-proxy 统一将过代理的流量通过 sys-firewall 上传。</p>
+<h3 id="创建-sys-proxy"><a href="#创建-sys-proxy" class="headerlink" title="创建 sys-proxy"></a>创建 sys-proxy</h3><p>在左上角的菜单中选择 Create new qube，取名为 sys-proxy（取别的名字也可以）。之后把这个 qube 配置成 AppVM，模板选择能安装你的代理客户端的发行版。</p>
+<p><img src="/qubes-os-with-proxy-install/create-sys-proxy.png" alt=""></p>
+<p>在 sys-proxy 的 Basic 设置中，勾选 Start qube automatically on boot．这一步是可选的，是为了让代理 qube 和其他网络提供 qube 如 sys-net 和 sys-proxy 一样开机自启动。由于 sys-proxy 启动并不会让全系统都「被迫」走代理，所以它和代理客户端的开机自启动并不相同。</p>
+<p>在 Basic 设置界面的右侧，能看到这个 qube 在 VM 网络中的 IP 地址。下文中假设这个地址是 <code>10.137.0.14</code>．注意到子网掩码是 <code>255.255.255.255</code>，即使是 sys-net 和 sys-firewall 也一样。尽管看起来像，但这些 qube 并不处在同一子网中。若想要使他们互联，必须设置 iptable．</p>
+<p>此时可以在 sys-proxy 的 Applications 设置中将一些应用移动到快捷菜单中，比如终端和文件管理器等。</p>
+<h3 id="在-sys-proxy-中安装代理"><a href="#在-sys-proxy-中安装代理" class="headerlink" title="在 sys-proxy 中安装代理"></a>在 sys-proxy 中安装代理</h3><p>就和在任何新系统里部署代理客户端一样，这一步也许是最困难的一步。如果你的客户端可以直接通过包管理器安装，则可以使用其他设备的代理连接上包管理器。</p>
+<p>如果你的客户端是单独安装的，你可以把安装包事先放在 USB 存储设备中，在这一步插上 USB．这样，如果你创建了 sys-usb，则安装包位于 sys-usb 中；如果你本身就在 USB 连接的设备上测试 Qubes OS，则你应该没有创建 sys-usb，此时安装包位于 dom0．</p>
+<p>你要做的则是把安装包拷贝到 sys-proxy 中。如果是从 sys-usb 拷贝的，则可以参考<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/how-to-copy-and-move-files/">官方的这篇文档</a>。基本上，要做的就是打开 sys-usb 中的安装包位置，右击它并选择 Copy to Other app qube… 或 Move to Other app qube… 并将目标设为 sys-proxy 即可。</p>
+<p>而从 dom0 拷贝安装包则是通过<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/how-to-copy-from-dom0/">另一种方式</a>在终端中输入命令。由于文件是在外置 USB 中的，要知道拷贝的文件地址，往往要打开 dom0 中的文件管理器。点击菜单中的 Run Program… 并输入 thunar．</p>
+<p><img src="/qubes-os-with-proxy-install/open-thunar-in-dom0.png" alt=""></p>
+<p>打开文件管理器后，就可以挂载 USB 盘并导航到目标路径了。将目标文件拷贝到 sys-proxy 则需要在 dom0 的终端中输入</p>
+<pre><code class="lang-bash">qvm-copy-to-vm sys-proxy &quot;/path/to/your/proxy-client&quot;
+</code></pre>
+<p>之后，打开 sys-proxy 的终端或文件管理器，在这里完成你的代理客户端的剩余配置步骤。</p>
+<h3 id="开放代理给其他-qube"><a href="#开放代理给其他-qube" class="headerlink" title="开放代理给其他 qube"></a>开放代理给其他 qube</h3><p>在勾选了代理客户端中的「监听局域网传来的连接」之类的设置后，就可以把代理提供给其他 qube 了，这些 qube 可以是如 personal、work 和 whonix 一样的 AppVM．为了让 AppVM 和 sys-proxy 之间能够互通，需要<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/firewall/#enabling-networking-between-two-qubes">配置两者的 iptables</a>．假设需要代理的 AppVM 的 IP 地址为 <code>10.137.0.11</code>，配置的方法和 Linux 中的一般配置方法是一致的。</p>
+<p>要注意，直接在终端中的配置只会保存到这个 AppVM 终止为止。若想永久保存配置，需要将对 iptable 的修改写在各个 qube 的 <code>/rw/config/</code> 路径中，这些脚本会在 qube 启动的时候执行。</p>
+<p>在 sys-firewall 的 <code>/rw/config/qubes-firewall-user-script</code> 中，加入</p>
+<pre><code class="lang-bash">iptables -I FORWARD 2 -s 10.137.0.11 -d 10.137.0.14 -j ACCEPT
+iptables -I FORWARD 2 -s 10.137.0.14 -d 10.137.0.11 -j ACCEPT
+</code></pre>
+<p>这代表 sys-firewall 允许 AppVM 访问 sys-proxy，也允许 sys-proxy 访问 AppVM．</p>
+<p>在 AppVM 的<code>/rw/config/rc.local</code> 中，加入</p>
+<pre><code class="lang-bash">iptables -I INPUT -s 10.137.0.14 -j ACCEPT
+</code></pre>
+<p>这代表 AppVM 允许 sys-proxy 访问自己。</p>
+<p>在 sys-proxy 的<code>/rw/config/rc.local</code> 中，加入</p>
+<pre><code class="lang-bash">iptables -I INPUT -s 10.137.0.11 -j ACCEPT
+</code></pre>
+<p>这代表 sys-proxy 允许 AppVM 访问自己。</p>
+<p>不要忘记对这些脚本进行 <code>chmod +x</code> 以允许它们执行。</p>
+<p>如果一切顺利，重启后这些 qube 就可以互相访问了。在 AppVM 上将 HTTP 和 Socks5 代理服务器配置成 sys-proxy 的 IP 地址和端口后，AppVM 就可以使用 sys-proxy 的代理联网了。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>在 <a target="_blank" rel="noopener" href="https://tails.boum.org/">Tails OS</a> 难以使用前置代理的网络环境下，Qubes OS 可能是唯一的无痕使用 Tor 的解决方案。当然，它提供的 Security by isolation 的方法可能更加吸引人。</p>
+<p>最近 Qubes OS 已经开始使用 GUI qube——这使得 GUI 无需受 dom0 的直接管理，这样 GUI 提供包的备选也变多了，也许可以使切换到 Qubes OS 作为主力系统<del>更不辣眼睛</del>更有吸引力一些。</p>
+<p>总之，祝你使用愉快。</p>
+</div></div><div class="post-main misc"><div class="prev-nav"><div class="nav-left"><</div><div class="link-left"> <a href="/anarcho-transhumanist-faq-zh-cn">无政府超人类主义问答</a></div></div><div class="next-nav"><link-right><a href="/compsci-tales-the-future-of-alchemy">炼金术的未来</a></link-right><div class="nav-right">></div></div><script src="/js/highlight.pack.js"></script>
+<script src="/js/highlight.line-number.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script></div></article><footer class="footer wrapper"><div class="social"><a href="mailto:mail@nothingto.me" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="/OpenPGP_0x5574255F8C7E37FC.asc" target="_blank"><i class="fa fa-key"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer-content">(ɔ) 2024 <a href="/" rel="nofollow">Nothing</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/hexo-theme-noise">noise</a>.</div></footer><link rel="stylesheet" type="text/css" href="/css/remix.css"><link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></body></html>

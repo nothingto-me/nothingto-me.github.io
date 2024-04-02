@@ -1,0 +1,122 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="之前的数学老师遇到我不会做的古典概率题，有时候会告诉我：&lt;del&gt;那你就去穷举啊&lt;/del&gt;实在不会做就试着穷举看看，如果情况不多就还能做出来。不过穷举也和思路有关，因为穷举的时候首先要知道，列出的这些情况是否是&lt;strong&gt;等概率&lt;/strong&gt;的情况。比如下面这道题，是一个朋友问我的；这里有一个正确答案和一个错误答案。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>穷举一道古典概率题</title><link rel="Shortcut Icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"Nothingto-Me",utcoffset:"8"}))};sessionStorage.setItem("_swa","1");</script><meta name="generator" content="Hexo 5.4.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/Math/" rel="tag">#Math</a> <a class="post-tag-none-link" href="/tags/Probability/" rel="tag">#Probability</a> <a class="post-tag-none-link" href="/tags/ProblemSolving/" rel="tag">#ProblemSolving</a> <a class="post-tag-none-link" href="/tags/Python/" rel="tag">#Python</a></div><div class="post-time">2021-03-04</div></div></div><div class="container post-header"><h1>穷举一道古典概率题</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.</span> <span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="toc-number">2.</span> <span class="toc-text">我的思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%A6%E4%B8%80%E4%B8%AA%E6%80%9D%E8%B7%AF"><span class="toc-number">3.</span> <span class="toc-text">另一个思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">4.1.</span> <span class="toc-text">错误的结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E7%A1%AE%E7%9A%84%E7%BB%93%E6%9E%9C"><span class="toc-number">4.2.</span> <span class="toc-text">正确的结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-number">5.</span> <span class="toc-text">后记</span></a></li></ol></details></div><div class="container post-content"><p>之前的数学老师遇到我不会做的古典概率题，有时候会告诉我：<del>那你就去穷举啊</del>实在不会做就试着穷举看看，如果情况不多就还能做出来。不过穷举也和思路有关，因为穷举的时候首先要知道，列出的这些情况是否是<strong>等概率</strong>的情况。比如下面这道题，是一个朋友问我的；这里有一个正确答案和一个错误答案。</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>一个人把六根草紧握在手中，仅露出它们的头和尾。然后随机地把六个头两两相接，六个尾也两两相接。求放开手后六根草恰巧连成一个环的概率。</p>
+</blockquote>
+<p>六根草接成一个大环就是说，不出现两根草连在一起的小环和四根草连在一起的小环。由于每根草的头尾都和其他草相接，所以不会不连成环。</p>
+<p>由于四根草连成小环的时候另外两根也连成小环，所以可以说：六根草连成一个大环的情况就是不出现两根草头尾均相接的情况。</p>
+<h2 id="我的思路"><a href="#我的思路" class="headerlink" title="我的思路"></a>我的思路</h2><p>考虑六根草的头已经两两连接在一起成为三组，此时只需要把尾接好就可以了。这个时候，要保证六根草连成一个大环，就不能把同组的尾连在一起。</p>
+<ul>
+<li>首先选一根草。由于这时六根草是等价的，所以选哪根都一样；之后，在剩下的五根草里选一根，和这根草尾部相连。有两种情况：<ol>
+<li>选到的是和这根草不同组的草。不同组的草有四根，故这种情况出现的概率占 <script type="math/tex">\frac{4}{5}</script>；将上面两根草相接后，产生了一组四根草和一组两根草。在剩下的四根草中再选一根草。有两种情况：<ol>
+<li>选到的是四根草一组中的草。这组草有两个头，所以概率占 <script type="math/tex">\frac{1}{2}</script>；在剩下的三根草中选取一根和这根草相连，也有两种情况：<ol>
+<li>和两根草组的草相连，满足了题目条件；概率占 <script type="math/tex">\frac{2}{3}</script>；</li>
+<li>和本组的草相连，不能满足题目条件；概率占 <script type="math/tex">\frac{1}{3}</script>．</li>
+</ol>
+</li>
+<li>选到的是两根草一组中的草。这组草有两个头，所以概率占 <script type="math/tex">\frac{1}{2}</script>；在剩下的草中选取一根和这根草相连，也有两种情况：<ol>
+<li>和四根草组的草相连，满足了题目条件；概率占 <script type="math/tex">\frac{2}{3}</script>；</li>
+<li>和本组的草相连，不能满足题目条件；概率占 <script type="math/tex">\frac{1}{3}</script>．</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>选到的是和这根草同组的草。这种情况出现的概率占 <script type="math/tex">\frac{1}{4}</script>，此时不能满足题目条件。</li>
+</ol>
+</li>
+<li>最终满足条件的分支的总概率为：<script type="math/tex; mode=display">\frac{4}{5} \times (\frac{1}{2} \times \frac{2}{3} + \frac{1}{2} \times \frac{2}{3}) = \frac{8}{15}</script></li>
+</ul>
+<h2 id="另一个思路"><a href="#另一个思路" class="headerlink" title="另一个思路"></a>另一个思路</h2><p>在和那位朋友对了答案之后，我确定了正确结果就是 <script type="math/tex">\frac{8}{15}</script>．不过那位朋友告诉我，他的一位朋友认为答案是 <script type="math/tex">\frac{1}{3}</script>，理由是这样的：</p>
+<p>他用了画图的方法来分析这些情况。画图能得到的结果有三种：</p>
+<ol>
+<li>六根草连成一个大环，即满足题目要求的情况；</li>
+<li>四根草连成一个环，两根草连成一个环；</li>
+<li>三组两根草连成三个小环。</li>
+</ol>
+<p>所以满足条件的概率为 <script type="math/tex">\frac{1}{3}</script>．</p>
+<p>在我和我的朋友质疑的时候他给出理由：从第一组选一根草开始连，只要连的是同一组的两根，就是等价的结果。而我们继续质疑这样等价会造成结果不等可能后，他说：<del>那你就去穷举啊</del>他所穷举出的结果只有上面的那三种可能。</p>
+<p>我认为这是不适合的穷举造成的错误；他使用画图来穷尽所有的结果，但是一方面最终视觉上的结果不一定是<strong>等可能</strong>的，另一方面画图为这题的概率选择增添了额外的信息量：在连这几根草的尾部时，这个人并不知道头部是如何连接的——也就是说他并不知道哪几根草在同一组；但这一信息在图上反映了出来。于是我决定<del>让他看看什么是真正的穷举</del>把这道题的结果用 Python 穷举一下，其中包括模拟错误的思路，和正确的思路。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>我用一个<code>list</code>来表示一个结果，用相同的数字表示头在同一组的草；在<code>list</code>中相邻表示两根草尾相连。</p>
+<pre><code class="lang-python">result = [1, 2, 1, 3, 2, 3]
+# 第一组的草a连第二组的草a，第一组的草b连第三组的草a，第二组的草b连第三组的草b
+# 这一结果满足题目要求
+
+result = [1, 2, 1, 2, 3, 3]
+# 第一组的草a连第二组的草a，第一组的草b连第二组的草b，第三组的草a连第三组的草b
+# 这一结果不满足要求
+</code></pre>
+<p>代码的完整输出偏长，这里不展示；只展示最后的结果。</p>
+<h3 id="错误的结果"><a href="#错误的结果" class="headerlink" title="错误的结果"></a>错误的结果</h3><p>这一段程序通过用 <code>list</code> 的 <code>index</code> 来穷举，得到的是错误的结果。</p>
+<pre><code class="lang-python">print(&#39;wrong answer:&#39;)
+total = 0
+hit = 0
+for i in range(3):
+    choose = [1, 2, 3]
+    result = []
+    result.append(1)
+    result.append(choose.pop(i))
+    for j in range(2):
+        result.append(2)
+        result.append(choose[j])
+        result.append(3)
+        result.append(choose[1 - j])
+        print(result, end=&#39; &#39;)
+        if result[0] == result[1] or result[2] == result[3] or result[4] == result[5]:
+            total += 1
+            print(&#39;no&#39;)
+        else:
+            total += 1
+            hit += 1
+            print(&#39;yes&#39;)
+        result.pop()
+        result.pop()
+        result.pop()
+        result.pop()
+print(&#39;prob = &#39; + str(hit) + &#39;/&#39; + str(total))
+</code></pre>
+<p>运行后，最后一行的输出为：</p>
+<pre><code>prob = 2/6
+</code></pre><h3 id="正确的结果"><a href="#正确的结果" class="headerlink" title="正确的结果"></a>正确的结果</h3><p>这一段程序不考虑组号，通过对六根草进行全排列进行穷举，得到的结果是正确的。</p>
+<pre><code class="lang-python">print(&#39;right answer:&#39;)
+total = 0
+hit = 0
+for i in range(6):
+    choose = [1, 1, 2, 2, 3, 3]
+    result = []
+    result.append(choose.pop(i))
+    for j in range(5):
+        choose5 = choose.copy()
+        result.append(choose5.pop(j))
+        for k in range(4):
+            choose4 = choose5.copy()
+            result.append(choose4.pop(k))
+            for l in range(3):
+                choose3 = choose4.copy()
+                result.append(choose3.pop(l))
+                for m in range(2):
+                    result.append(choose3[m])
+                    result.append(choose3[1 - m])
+                    print(result, end=&#39; &#39;)
+                    if result[0] == result[1] or result[2] == result[3] or result[4] == result[5]:
+                        total += 1
+                        print(&#39;no&#39;)
+                    else:
+                        total += 1
+                        hit += 1
+                        print(&#39;yes&#39;)
+                    result.pop()
+                    result.pop()
+                result.pop()
+            result.pop()
+        result.pop()
+print(&#39;prob = &#39; + str(hit) + &#39;/&#39; + str(total))
+</code></pre>
+<p>运行后，最后一行的输出为：</p>
+<pre><code>prob = 384/720
+</code></pre><p>即正确结果 <script type="math/tex">\frac{8}{15}</script>．</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>写完才想起来 Python 是有直接列举排列组合的函数的，就是 <code>itertool.combinations()</code> 和 <code>itertool.permutations()</code>；而且我匆忙之中代码写得很烂。<del>反正都穷举了，做对就行了</del></p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/darkjax.css"></div></div><div class="post-main misc"><div class="prev-nav"><div class="nav-left"><</div><div class="link-left"> <a href="/lisp-variable-procedure-definition">Lisp 与变量与过程定义</a></div></div><div class="next-nav"><link-right><a href="/hello-world">Hello World</a></link-right><div class="nav-right">></div></div><script src="/js/highlight.pack.js"></script>
+<script src="/js/highlight.line-number.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script></div></article><footer class="footer wrapper"><div class="social"><a href="mailto:mail@nothingto.me" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="/OpenPGP_0x5574255F8C7E37FC.asc" target="_blank"><i class="fa fa-key"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer-content">(ɔ) 2024 <a href="/" rel="nofollow">Nothing</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/hexo-theme-noise">noise</a>.</div></footer><link rel="stylesheet" type="text/css" href="/css/remix.css"><link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></body></html>

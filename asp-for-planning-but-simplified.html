@@ -1,0 +1,180 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="&lt;a href=&quot;https://assets.cambridge.org/97805218/18025/sample/9780521818025ws.pdf&quot;&gt;Knowledge Representation, Reasoning and Declarative Problem Solving&lt;/a&gt; 中给出了一个使用 &lt;a href=&quot;https://en.wikipedia.org/wiki/Answer_set_programming&quot;&gt;Answer Set Prolog&lt;/a&gt; 编码规划的方法，以下代码是书中给出的一个编码积木世界规划问题。"><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><title>用 ASP 编码规划，但是化简版</title><link rel="Shortcut Icon" href="/favicon.ico"><link rel="alternate" type="application/atom+xml" href="/atom.xml"><script>if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+"//"+location.host)!== 0){fetch("https://counter.dev/track?"+new URLSearchParams({referrer:document.referrer,screen:screen.width+"x"+screen.height,user:"Nothingto-Me",utcoffset:"8"}))};sessionStorage.setItem("_swa","1");</script><meta name="generator" content="Hexo 5.4.0"></head><body><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a class="sidebar-nav-item active" href="/">Home</a><a class="sidebar-nav-item" href="/archives">Archives</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-none-link" href="/tags/LogicProgramming/" rel="tag">#LogicProgramming</a></div><div class="post-time">2024-04-02</div></div></div><div class="container post-header"><h1>用 ASP 编码规划，但是化简版</h1></div><div class="container post-toc"><details class="toc"><summary class="toc-accordion">Table of Contents</summary><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E6%8E%89%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%80%A7%E6%9D%A1%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">去掉可执行性条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E6%8E%89%E5%8A%A8%E6%80%81%E5%9B%A0%E6%9E%9C%E5%BE%8B"><span class="toc-number">2.</span> <span class="toc-text">去掉动态因果律</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%9A%E5%90%97%EF%BC%9F"><span class="toc-number">3.</span> <span class="toc-text">会吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A2%E7%84%B6%E9%83%BD%E7%94%A8-clingo-%E4%BA%86%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8-incmode%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">既然都用 clingo 了，为什么不用 incmode？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%B8%BB%E8%A6%81%E7%9A%84%E6%98%AF%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8-show-%E6%9D%A5%E5%AE%9E%E7%8E%B0%E5%8F%AA%E8%BE%93%E5%87%BA-occurs-%E5%91%A2%EF%BC%9F%EF%BC%9F"><span class="toc-number">5.</span> <span class="toc-text">最主要的是，为什么不用 show 来实现只输出 occurs 呢？？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95"><span class="toc-number">6.</span> <span class="toc-text">附录</span></a></li></ol></details></div><div class="container post-content"><p><a target="_blank" rel="noopener" href="https://assets.cambridge.org/97805218/18025/sample/9780521818025ws.pdf">Knowledge Representation, Reasoning and Declarative Problem Solving</a> 中给出了一个使用 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Answer_set_programming">Answer Set Prolog</a> 编码规划的方法，以下代码是书中给出的一个编码积木世界规划问题。</p>
+<pre><code class="lang-prolog">% domain
+
+block(a;b;c;d).
+
+fluent(on(X,Y)) :- block(X), block(Y).
+fluent(ontable(X)) :- block(X).
+fluent(clear(X)) :- block(X).
+fluent(holding(X)) :- block(X).
+fluent(handempty).
+
+action(pick_up(X)) :- block(X).
+action(put_down(X)) :- block(X).
+action(stack(X,Y)) :- block(X), block(Y).
+action(unstack(X,Y)) :- block(X), block(Y).
+
+% executability conditions
+
+exec(pick_up(X), clear(X)) :- block(X).
+exec(pick_up(X), ontable(X)) :- block(X).
+exec(pick_up(X), handempty) :- block(X).
+
+exec(put_down(X), holding(X)) :- block(X).
+
+exec(stack(X,Y), holding(X)) :- block(X), block(Y).
+exec(stack(X,Y), clear(Y)) :- block(X), block(Y).
+
+exec(unstack(X,Y), clear(X)) :- block(X), block(Y).
+exec(unstack(X,Y), on(X, Y)) :- block(X), block(Y).
+exec(unstack(X,Y), handempty) :- block(X), block(Y).
+
+% dynamic causal laws
+
+causes(pick_up(X), neg(ontable(X))) :- block(X).
+causes(pick_up(X), neg(clear(X))) :- block(X).
+causes(pick_up(X), holding(X)) :- block(X).
+causes(pick_up(X), neg(handempty)) :- block(X).
+
+causes(put_down(X), ontable(X)) :- block(X).
+causes(put_down(X), clear(X)) :- block(X).
+causes(put_down(X), neg(holding(X))) :- block(X).
+causes(put_down(X), handempty) :- block(X).
+
+causes(stack(X, Y), neg(holding(X))) :- block(X), block(Y).
+causes(stack(X, Y), neg(clear(Y))) :- block(X), block(Y).
+causes(stack(X, Y), clear(X)) :- block(X), block(Y).
+causes(stack(X, Y), handempty) :- block(X), block(Y).
+causes(stack(X, Y), on(X, Y)) :- block(X), block(Y).
+
+causes(unstack(X, Y), holding(X)) :- block(X), block(Y).
+causes(unstack(X, Y), clear(Y)) :- block(X), block(Y).
+causes(unstack(X, Y), neg(clear(X))) :- block(X), block(Y).
+causes(unstack(X, Y), neg(handempty)) :- block(X), block(Y).
+causes(unstack(X, Y), neg(on(X, Y))) :- block(X), block(Y).
+
+% initial state
+
+initially(handempty).
+initially(clear(a)).
+initially(clear(c)).
+initially(ontable(c)).
+initially(ontable(b)).
+initially(on(a, b)).
+
+initially(yes).
+
+% goal conditions
+
+finally(on(a, c)).
+finally(on(c, b)).
+
+% time
+
+time(1..7).
+
+% goal
+
+not_goal(T) :- time(T), finally(X), not holds(X, T).
+goal(T) :- time(T), not not_goal(T).
+
+% eliminating plan without given length
+
+:- not goal(7).
+
+% contrary
+
+contrary(F, neg(F)) :- fluent(F).
+contrary(neg(F), F) :- fluent(F).
+
+% executability
+
+not_executable(A, T) :- exec(A, F), not holds(F, T), time(T).
+executable(A, T) :- T &lt; 7, not not_executable(A, T), action(A), time(T).
+
+% initial fluent values
+
+holds(F, 1) :- initially(F).
+
+% effect axiom
+
+holds(F, T + 1) :- T &lt; 7, executable(A, T), occurs(A, T), causes(A, F).
+
+% inertia
+
+holds(F, T + 1) :- contrary(F, G), T &lt; 7, holds(F, T), not holds(G, T + 1).
+
+% occurrence of actions
+
+occurs(A, T) :- action(A), time(T), not goal(T), not not_occurs(A, T).
+not_occurs(A, T) :- action(A), action(AA), time(T), occurs(AA, T), A != AA.
+:- action(A), time(T), occurs(A, T), not executable(A, T).
+</code></pre>
+<p>规划的解则是输出的 Answer Set 的一个子集，比如上面这个规划的解是这个：</p>
+<pre><code class="lang-prolog">occurs(unstack(a,b),1) 
+occurs(put_down(a),2) 
+occurs(pick_up(c),3) 
+occurs(stack(c,b),4) 
+occurs(pick_up(a),5) 
+occurs(stack(a,c),6)
+</code></pre>
+<p>不过，如果只是想要知道规划的话，整个 Answer Set 就太大了。有没有办法去掉一些无用的谓词呢？</p>
+<h2 id="去掉可执行性条件"><a href="#去掉可执行性条件" class="headerlink" title="去掉可执行性条件"></a>去掉可执行性条件</h2><p>和可执行性相关的谓词是 <code>exec</code>、<code>executable</code> 和 <code>not_executable</code>，而后两者是由前者和 fluent 的成立性 <code>holds</code> 推来的，又用于推出动作的出现 <code>occurs</code>，所以可执行性可以看成同一时刻的 <code>occurs</code> 和 <code>holds</code> 的关系。那这个关系是什么？</p>
+<p>如果某个动作 <script type="math/tex">A</script> 需要 fluent <script type="math/tex">F</script> 成立才能执行，那么若 <script type="math/tex">F</script> 在时刻 <script type="math/tex">T</script> 不成立，则 <script type="math/tex">A</script> 在时刻 <script type="math/tex">T+1</script> 不能出现 —- 若出现，则有矛盾。</p>
+<script type="math/tex; mode=display">\bot\leftarrow occurs(A, T+1),\ \mathbf{not}\ holds(F,T).</script><p>针对原问题中四个动作的相应编码如下。</p>
+<pre><code class="lang-prolog">% executability conditions
+
+:- occurs(pick_up(X), T), not holds(clear(X), T).
+:- occurs(pick_up(X), T), not holds(ontable(X), T).
+:- occurs(pick_up(X), T), not holds(handempty, T).
+
+:- occurs(put_down(X), T), not holds(holding(X), T).
+
+:- occurs(stack(X, Y), T), not holds(holding(X), T).
+:- occurs(stack(X, Y), T), not holds(clear(Y), T).
+
+:- occurs(unstack(X, Y), T), not holds(clear(X), T).
+:- occurs(unstack(X, Y), T), not holds(on(X, Y), T).
+:- occurs(unstack(X, Y), T), not holds(handempty, T).
+</code></pre>
+<p>很好！只要找到方法推出 <code>occurs</code> 和 <code>holds</code> 就可以了。</p>
+<h2 id="去掉动态因果律"><a href="#去掉动态因果律" class="headerlink" title="去掉动态因果律"></a>去掉动态因果律</h2><p>和动态因果律有关的谓词是 <code>causes</code>，它是用在效果公理里的，删除了它的话效果公理也可以删除了。效果公理是从一个动作的出现 <code>occurs</code> 得到下一时刻成立的 fluents <code>holds</code>，所以动态因果律可以看成下一时刻的 <code>holds</code> 由 <code>occurs</code> 推出的关系。</p>
+<p>这个关系比上面的就简单多了。如果执行某个动作 <script type="math/tex">A</script> 会使得某个 fluent <script type="math/tex">F</script> 成立，那么若 <script type="math/tex">A</script> 在时刻 <script type="math/tex">T</script> 出现，则 <script type="math/tex">F</script> 在时刻 <script type="math/tex">T+1</script> 成立。</p>
+<pre><code class="lang-prolog">holds(neg(ontable(X)), T + 1) :- occurs(pick_up(X), T).
+holds(neg(clear(X)), T + 1) :- occurs(pick_up(X), T).
+holds(holding(X), T + 1) :- occurs(pick_up(X), T).
+holds(neg(handempty), T + 1) :- occurs(pick_up(X), T).
+
+holds(ontable(X), T + 1) :- occurs(put_down(X), T).
+holds(clear(X), T + 1) :- occurs(put_down(X), T).
+holds(neg(holding(X)), T + 1) :- occurs(put_down(X), T).
+holds(handempty, T + 1) :- occurs(put_down(X), T).
+
+holds(neg(holding(X)), T + 1) :- occurs(stack(X, Y), T).
+holds(neg(clear(Y)), T + 1) :- occurs(stack(X, Y), T).
+holds(clear(X), T + 1) :- occurs(stack(X, Y), T).
+holds(handempty, T + 1) :- occurs(stack(X, Y), T).
+holds(on(X, Y), T + 1) :- occurs(stack(X, Y), T).
+
+holds(holding(X), T + 1) :- occurs(unstack(X, Y), T).
+holds(clear(Y), T + 1) :- occurs(unstack(X, Y), T).
+holds(neg(clear(X)), T + 1) :- occurs(unstack(X, Y), T).
+holds(neg(handempty), T + 1) :- occurs(unstack(X, Y), T).
+holds(neg(on(X, Y)), T + 1) :- occurs(unstack(X, Y), T).
+</code></pre>
+<p>只要能推出 <code>occurs</code>，一切都会好起来的。</p>
+<h2 id="会吗？"><a href="#会吗？" class="headerlink" title="会吗？"></a>会吗？</h2><p>很遗憾，我没有找到使用纯非单调推理但不使用无用谓词 <code>not_occurs</code> 来满足推出谓词 <code>occurs</code> 的要求：每个时刻 <script type="math/tex">T</script> 有且仅有一个动作 <script type="math/tex">A</script> 满足 <code>occurs</code>．也就是说，它的规则类似：</p>
+<script type="math/tex; mode=display">occurs(A,T)\leftarrow action(A),\ time(T),\ \forall AA\{action(AA),\ AA\neq A,\ \mathbf{not}\ occurs(AA)\}.</script><p>然而 ASP 中对变量均是存在量化的。在这里，<code>not_occurs</code> 对于实现 <code>occurs</code> 的唯一性是必要的：在对某个动作推出 <code>occurs</code> 后，对其它动作只会推出 <code>not_occurs</code>，也就推不出 <code>occurs</code> 了。</p>
+<p>可能正是为了编码唯一性，<a target="_blank" rel="noopener" href="https://potassco.org/clingo/">clingo</a> 给出了集合计数的方法。</p>
+<pre><code class="lang-prolog">1 &#123; occurs(A, T) : action(A) &#125; 1 :- time(T), not goal(T).
+</code></pre>
+<p>左右两边的 <code>1</code> 表示即使考虑所有 <code>A</code>，<code>occurs</code> 也只会出现一次。</p>
+<h2 id="既然都用-clingo-了，为什么不用-incmode？"><a href="#既然都用-clingo-了，为什么不用-incmode？" class="headerlink" title="既然都用 clingo 了，为什么不用 incmode？"></a>既然都用 clingo 了，为什么不用 incmode？</h2><p>是啊！为什么呢？</p>
+<h2 id="最主要的是，为什么不用-show-来实现只输出-occurs-呢？？"><a href="#最主要的是，为什么不用-show-来实现只输出-occurs-呢？？" class="headerlink" title="最主要的是，为什么不用 show 来实现只输出 occurs 呢？？"></a>最主要的是，为什么不用 <code>show</code> 来实现只输出 <code>occurs</code> 呢？？</h2><p>确实。</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><p>我改过的代码在<a href="/asp-for-planning-but-simplified/block_world_simp.lp">这里</a>。我又去掉了 <code>contrary</code>，不过这样编码形式就和作者给出的代码有一些差别。</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<link rel="stylesheet" type="text/css" href="/css/darkjax.css"></div></div><div class="post-main misc"><div class="prev-nav"></div><div class="next-nav"><link-right><a href="/unordered_map-3-example">unordered_map 的三个小例子</a></link-right><div class="nav-right">></div></div><script src="/js/highlight.pack.js"></script>
+<script src="/js/highlight.line-number.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>hljs.initLineNumbersOnLoad();</script></div></article><footer class="footer wrapper"><div class="social"><a href="mailto:mail@nothingto.me" target="_blank"><i class="fa fa-envelope-o"></i></a><a href="/OpenPGP_0x5574255F8C7E37FC.asc" target="_blank"><i class="fa fa-key"></i></a><a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a></div><div class="footer-content">(ɔ) 2024 <a href="/" rel="nofollow">Nothing</a>. Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo</a>. Theme <a target="_blank" href="https://github.com/lotabout/hexo-theme-noise">noise</a>.</div></footer><link rel="stylesheet" type="text/css" href="/css/remix.css"><link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous" referrerpolicy="no-referrer"></body></html>

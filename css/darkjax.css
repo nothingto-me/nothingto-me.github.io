@@ -1,0 +1,43 @@
+@media (prefers-color-scheme: dark) {
+    #MathJax_Message {
+        background-color: #111;
+        border: 1px solid #555;
+        color: white;
+    }
+    
+    .MathJax_Menu {
+        background-color: #333;
+        color: white;
+    }
+    
+    .MathJax_MenuActive {
+        background-color: #A2A4A6;
+        color: #111;
+    }
+    
+    #MathJax_Help {
+        background-color: #333;
+        color: white;
+    }
+    
+    #MathJax_HelpContent {
+        background-color: #444;
+    }
+    
+    #MathJax_HelpClose span {
+        background-color: #555;
+    }
+    
+    #MathJax_About {
+        background-color: #333;
+        color: white;
+    }
+    
+    #MathJax_About span {
+        background-color: #444 !important;
+    }
+    
+    #MathJax_AboutClose span {
+        background-color: #555;
+    }
+}
