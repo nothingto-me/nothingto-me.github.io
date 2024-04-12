@@ -120,7 +120,7 @@ occurs(stack(a,c),6)
 </code></pre>
 <p>不过，如果只是想要知道规划的话，整个 Answer Set 就太大了。有没有办法去掉一些无用的谓词呢？</p>
 <h2 id="去掉可执行性条件"><a href="#去掉可执行性条件" class="headerlink" title="去掉可执行性条件"></a>去掉可执行性条件</h2><p>和可执行性相关的谓词是 <code>exec</code>、<code>executable</code> 和 <code>not_executable</code>，而后两者是由前者和 fluent 的成立性 <code>holds</code> 推来的，又用于推出动作的出现 <code>occurs</code>，所以可执行性可以看成同一时刻的 <code>occurs</code> 和 <code>holds</code> 的关系。那这个关系是什么？</p>
-<p>如果某个动作 <script type="math/tex">A</script> 需要 fluent <script type="math/tex">F</script> 成立才能执行，那么若 <script type="math/tex">F</script> 在时刻 <script type="math/tex">T</script> 不成立，则 <script type="math/tex">A</script> 在时刻 <script type="math/tex">T+1</script> 不能出现 —- 若出现，则有矛盾。</p>
+<p>如果某个动作 <script type="math/tex">A</script> 需要 fluent <script type="math/tex">F</script> 成立才能执行，那么若 <script type="math/tex">F</script> 在时刻 <script type="math/tex">T</script> 不成立，则 <script type="math/tex">A</script> 在时刻 <script type="math/tex">T+1</script> 不能出现 — 若出现，则有矛盾。</p>
 <script type="math/tex; mode=display">\bot\leftarrow occurs(A, T+1),\ \mathbf{not}\ holds(F,T).</script><p>针对原问题中四个动作的相应编码如下。</p>
 <pre><code class="lang-prolog">% executability conditions
 
