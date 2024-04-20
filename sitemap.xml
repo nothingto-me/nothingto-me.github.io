@@ -2,9 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.nothingto.me/two-things-about-symbols-and-correspondence</loc>
+    
+    <lastmod>2024-04-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/lisp-variable-procedure-definition</loc>
+    
+    <lastmod>2024-04-20</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/qubes-os-with-proxy-install</loc>
+    
+    <lastmod>2024-04-20</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.nothingto.me/asp-for-planning-but-simplified</loc>
     
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     
   </url>
   
@@ -37,21 +58,7 @@
   </url>
   
   <url>
-    <loc>https://blog.nothingto.me/qubes-os-with-proxy-install</loc>
-    
-    <lastmod>2021-11-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.nothingto.me/compsci-tales-hierarchy</loc>
-    
-    <lastmod>2021-10-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.nothingto.me/lisp-variable-procedure-definition</loc>
     
     <lastmod>2021-10-20</lastmod>
     
@@ -165,7 +172,7 @@
 
   <url>
     <loc>https://blog.nothingto.me/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -173,168 +180,175 @@
   
   <url>
     <loc>https://blog.nothingto.me/tags/Meta/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/ProblemSolving/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Lisp/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Math/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/NumberTheory/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Tutorial/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Linux/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/CyberSecurity/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Philosophy/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Psychology/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Note/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Algorithm/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/C/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/CompSciTales/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Artwork/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/ComputerNetwork/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/English/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/CNN/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/LogicProgramming/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Probability/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Python/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Protocols/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/RelationalAlgebra/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://blog.nothingto.me/tags/Translation/</loc>
-    <lastmod>2024-04-12</lastmod>
+    <lastmod>2024-04-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.nothingto.me/tags/Thoughts/</loc>
+    <lastmod>2024-04-20</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

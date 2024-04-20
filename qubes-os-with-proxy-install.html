@@ -7,7 +7,7 @@
 <li>对 Linux 的一点儿经验或知识。（一点儿！）</li>
 </ul>
 <h2 id="Qubes-OS-简介"><a href="#Qubes-OS-简介" class="headerlink" title="Qubes OS 简介"></a>Qubes OS 简介</h2><p>Qubes OS 基于 <a target="_blank" rel="noopener" href="https://wiki.xen.org/wiki/Xen_Project_Software_Overview">Xen Hypervisor</a>，这是一个裸机虚拟化管程（<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hypervisor">bare-metal hypervisor</a>），即直接运行在硬件上的虚拟化管程。在这个虚拟层之上运行着各种虚拟机，称为 qubes．Qubes OS 将不同的应用运行在不同的 qube 里，这样不仅可以隔离各个应用使其无法互相干扰或读取系统数据以保护隐私，也能防止恶意软件侵入系统以保持安全。</p>
-<p><img src="https://www.qubes-os.org/attachment/site/qubes-trust-level-architecture.png" alt=""></p>
+<p><img src="https://www.qubes-os.org/attachment/site/qubes-trust-level-architecture.png" alt="Qubes OS 的架构，在 Xen Hypervisor 的基础上运行 AdminVM (dom0)、sys-net、sys-firewall、AppVM 等"></p>
 <h2 id="系统安装"><a href="#系统安装" class="headerlink" title="系统安装"></a>系统安装</h2><p>到<a target="_blank" rel="noopener" href="https://www.qubes-os.org/downloads/">这里</a>下载最新版的镜像。将镜像刻录到 U 盘上作为安装盘后，从安装盘启动安装程序。由于安全原因，Qubes OS 不支持作为双系统的其中一个来安装。</p>
 <p>在安装中遇到的问题可以参考<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/installation-troubleshooting/">安装问题排查</a>。如果遇到了安装界面卡住的问题，不要忘记禁用 nouveau 驱动（Fuck you NVIDIA）。</p>
 <blockquote>
@@ -15,10 +15,10 @@
 </blockquote>
 <h2 id="代理部署"><a href="#代理部署" class="headerlink" title="代理部署"></a>代理部署</h2><p>系统启动后，创建的默认 qube 应该有 sys-net、sys-firewall 这些系统 VM，还有 personal、work 这些 AppVM 等。如果你在安装的过程中选择了安装 whonix，那么还会有 sys-whonix 和 anon-whonix．当然，由于显而易见的原因，whonix qube 和 AppVM 想要访问互联网还需要部署代理。</p>
 <p>这篇文章中的方法将会创建一个代理专用的 qube：sys-proxy，在此 qube 上部署代理客户端，并以共享给局域网的方式提供给 whonix 等其他 qube．目标的 Qubes 网络系统是这样的：</p>
-<p><img src="/qubes-os-with-proxy-install/qubes.dot.svg" alt=""> </p>
+<p><img src="/qubes-os-with-proxy-install/qubes.dot.svg" alt="sys-firewall 往上连接 sys-net、往下连接 sys-proxy、sys-whonix 和 AppVM"> </p>
 <p>sys-proxy 和其他 AppVM 都使用 sys-firewall 作为默认网关；sys-firewall 作为一个路由器运行，将 AppVM 和 sys-proxy 的流量互相转发，以在它们之间建立起连接；最后由 sys-proxy 统一将过代理的流量通过 sys-firewall 上传。</p>
 <h3 id="创建-sys-proxy"><a href="#创建-sys-proxy" class="headerlink" title="创建 sys-proxy"></a>创建 sys-proxy</h3><p>在左上角的菜单中选择 Create new qube，取名为 sys-proxy（取别的名字也可以）。之后把这个 qube 配置成 AppVM，模板选择能安装你的代理客户端的发行版。</p>
-<p><img src="/qubes-os-with-proxy-install/create-sys-proxy.png" alt=""></p>
+<p><img src="/qubes-os-with-proxy-install/create-sys-proxy.png" alt="Create new qube 窗口的截图"></p>
 <p>在 sys-proxy 的 Basic 设置中，勾选 Start qube automatically on boot．这一步是可选的，是为了让代理 qube 和其他网络提供 qube 如 sys-net 和 sys-proxy 一样开机自启动。由于 sys-proxy 启动并不会让全系统都「被迫」走代理，所以它和代理客户端的开机自启动并不相同。</p>
 <p>在 Basic 设置界面的右侧，能看到这个 qube 在 VM 网络中的 IP 地址。下文中假设这个地址是 <code>10.137.0.14</code>．注意到子网掩码是 <code>255.255.255.255</code>，即使是 sys-net 和 sys-firewall 也一样。尽管看起来像，但这些 qube 并不处在同一子网中。若想要使他们互联，必须设置 iptable．</p>
 <p>此时可以在 sys-proxy 的 Applications 设置中将一些应用移动到快捷菜单中，比如终端和文件管理器等。</p>
@@ -26,7 +26,7 @@
 <p>如果你的客户端是单独安装的，你可以把安装包事先放在 USB 存储设备中，在这一步插上 USB．这样，如果你创建了 sys-usb，则安装包位于 sys-usb 中；如果你本身就在 USB 连接的设备上测试 Qubes OS，则你应该没有创建 sys-usb，此时安装包位于 dom0．</p>
 <p>你要做的则是把安装包拷贝到 sys-proxy 中。如果是从 sys-usb 拷贝的，则可以参考<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/how-to-copy-and-move-files/">官方的这篇文档</a>。基本上，要做的就是打开 sys-usb 中的安装包位置，右击它并选择 Copy to Other app qube… 或 Move to Other app qube… 并将目标设为 sys-proxy 即可。</p>
 <p>而从 dom0 拷贝安装包则是通过<a target="_blank" rel="noopener" href="https://www.qubes-os.org/doc/how-to-copy-from-dom0/">另一种方式</a>在终端中输入命令。由于文件是在外置 USB 中的，要知道拷贝的文件地址，往往要打开 dom0 中的文件管理器。点击菜单中的 Run Program… 并输入 thunar．</p>
-<p><img src="/qubes-os-with-proxy-install/open-thunar-in-dom0.png" alt=""></p>
+<p><img src="/qubes-os-with-proxy-install/open-thunar-in-dom0.png" alt="输入 thunar 的截图"></p>
 <p>打开文件管理器后，就可以挂载 USB 盘并导航到目标路径了。将目标文件拷贝到 sys-proxy 则需要在 dom0 的终端中输入</p>
 <pre><code class="lang-bash">qvm-copy-to-vm sys-proxy &quot;/path/to/your/proxy-client&quot;
 </code></pre>

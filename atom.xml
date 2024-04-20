@@ -6,7 +6,7 @@
   <link href="https://blog.nothingto.me/atom.xml" rel="self"/>
   
   <link href="https://blog.nothingto.me/"/>
-  <updated>2024-04-12T09:43:16.163Z</updated>
+  <updated>2024-04-20T10:56:38.797Z</updated>
   <id>https://blog.nothingto.me/</id>
   
   <author>
@@ -17,11 +17,35 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>符号与联系两则</title>
+    <link href="https://blog.nothingto.me/two-things-about-symbols-and-correspondence"/>
+    <id>https://blog.nothingto.me/two-things-about-symbols-and-correspondence</id>
+    <published>2024-04-20T10:11:45.000Z</published>
+    <updated>2024-04-20T10:56:38.797Z</updated>
+    
+    
+      
+      
+        
+        
+        
+    <summary type="html">&lt;p&gt;往往有些符号在被创造出来时的表达是比较「中性」的，但在之后经历了一个「充能」的过程，变得更富有情感、更有表现力。&lt;/p&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Thoughts" scheme="https://blog.nothingto.me/tags/Thoughts/"/>
+    
+  </entry>
+  
+  <entry>
     <title>用 ASP 编码规划，但是化简版</title>
     <link href="https://blog.nothingto.me/asp-for-planning-but-simplified"/>
     <id>https://blog.nothingto.me/asp-for-planning-but-simplified</id>
     <published>2024-04-02T13:44:20.000Z</published>
-    <updated>2024-04-12T09:43:16.163Z</updated>
+    <updated>2024-04-20T10:10:46.360Z</updated>
     
     
       
@@ -35,6 +59,8 @@
     
     
     
+    
+    <category term="ProblemSolving" scheme="https://blog.nothingto.me/tags/ProblemSolving/"/>
     
     <category term="LogicProgramming" scheme="https://blog.nothingto.me/tags/LogicProgramming/"/>
     
@@ -125,7 +151,7 @@
     <link href="https://blog.nothingto.me/qubes-os-with-proxy-install"/>
     <id>https://blog.nothingto.me/qubes-os-with-proxy-install</id>
     <published>2021-10-17T03:17:56.000Z</published>
-    <updated>2021-11-13T09:11:36.860Z</updated>
+    <updated>2024-04-20T10:24:45.619Z</updated>
     
     
       
@@ -397,7 +423,7 @@
     <link href="https://blog.nothingto.me/lisp-variable-procedure-definition"/>
     <id>https://blog.nothingto.me/lisp-variable-procedure-definition</id>
     <published>2021-03-11T14:36:01.000Z</published>
-    <updated>2021-10-20T06:19:46.142Z</updated>
+    <updated>2024-04-20T10:27:09.096Z</updated>
     
     
       
